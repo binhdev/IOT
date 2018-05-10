@@ -4,13 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ui.auth.LoginActivity"
-    tools:showIn="@layout/activity_login">
-    <Button
-        android:id="@+id/btn"
-        android:text="Login"
-        android:onClick="clickHandle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    tools:context=".ui.dashboard.DashboardActivity">
+
 </android.support.constraint.ConstraintLayout>

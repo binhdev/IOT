@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:background="@drawable/bg_dialog_selector"
+    android:gravity="center"
+    android:clipChildren="true"
+    android:clipToPadding="true"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/dialog_msg_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/dialog_msg_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorBlack"
+            android:text="Caption"
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/dialog_msg_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:paddingLeft="5dp"
+            android:visibility="gone" />
+    </FrameLayout>
+    <!-- chua noi dung -->
+
+    <TextView
+        android:id="@+id/dialog_msg_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_msg_header"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorBlack"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:id="@+id/dialog_list_layoutbutton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_msg_content"
+        android:background="@color/transparent" >
+
+        <Button
+            android:id="@+id/dialog_msg_btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btnleft_dialog_selector"
+            android:padding="10dp"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@drawable/text_color_redblue_selector"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/dialog_msg_btnOK"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btnright_dialog_selector"
+            android:padding="10dp"
+            android:text="Accept"
+            android:textAllCaps="false"
+            android:textColor="@drawable/text_color_redblue_selector"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+</RelativeLayout>

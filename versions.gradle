@@ -3,7 +3,7 @@
  * maven repositories.
  **/
 def versions = [:]
-versions.support = "27.0.2"
+versions.support = "27.1.1"
 versions.junit = "4.12"
 versions.espresso = "3.0.1"
 versions.retrofit = "2.3.0"

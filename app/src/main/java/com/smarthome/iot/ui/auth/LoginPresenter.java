@@ -41,10 +41,12 @@ public class LoginPresenter implements LoginContract.IPresenter{
 
     private void handleLoginFailed(Throwable e) {
         mView.hideLoadingIndicator();
+        mView.showLoginError(e);
     }
 
     private void handleLoginSuccess(LoginResponse loginResponse) {
         mView.hideLoadingIndicator();
+        mView.startDashboardActivity();
     }
 
 }
