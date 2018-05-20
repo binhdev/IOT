@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">IOT</string>
     <string name="title_activity_login">LoginActivity</string>
+    
+    <string name="item_dashboard">Dashboard</string>
+    <string name="item_group">Group</string>
+    <string name="item_alarm">Alarm</string>
+    <string name="item_notification">Notification</string>
 </resources>
+
+

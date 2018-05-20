@@ -14,6 +14,13 @@ public class LoginRepository implements ILoginDataSource.LocalDataSource, ILogin
 
     private static LoginRepository instance;
 
+    @NonNull
+    private LoginLocalDataSource mLoginLocalDataSource;
+
+    @NonNull
+    private LoginRemoteDataSource mLoginRemoteDataSource;
+
+
     private LoginRepository(@NonNull LoginLocalDataSource loginLocalDataSource, @NonNull LoginRemoteDataSource loginRemoteDataSource){
         mLoginLocalDataSource = loginLocalDataSource;
         mLoginRemoteDataSource = loginRemoteDataSource;
@@ -25,11 +32,7 @@ public class LoginRepository implements ILoginDataSource.LocalDataSource, ILogin
         }
         return instance;
     }
-    @NonNull
-    private LoginLocalDataSource mLoginLocalDataSource;
 
-    @NonNull
-    private LoginRemoteDataSource mLoginRemoteDataSource;
 
     @Override
     public Observable insertUser(User user) {

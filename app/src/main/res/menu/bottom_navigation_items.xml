@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_dashboard"
+        android:icon="@drawable/ic_account_box_black_24dp"
+        android:title="@string/item_dashboard"/>
+    <item
+        android:id="@+id/action_group"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="@string/item_group"/>
+    <item
+        android:id="@+id/action_alarm"
+        android:icon="@drawable/ic_assignment_ind_black_24dp"
+        android:title="@string/item_alarm"/>
+    <item
+        android:id="@+id/action_notification"
+        android:icon="@drawable/ic_assignment_ind_black_24dp"
+        android:title="@string/item_notification"/>
+</menu>

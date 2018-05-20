@@ -1,17 +1,22 @@
 package com.smarthome.iot.ui.auth;
 
+import android.content.Context;
+
 import com.google.common.base.Preconditions;
 import com.smarthome.iot.data.repository.LoginRepository;
 import com.smarthome.iot.data.source.remote.response.LoginResponse;
+import com.smarthome.iot.utils.AppPrefs;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
 
 public class LoginPresenter implements LoginContract.IPresenter{
     private LoginContract.IView mView;
     private LoginRepository mLoginReposity;
     private BaseSchedulerProvider mSchedulerProvider;
+    private Context context;
 
 
-    public LoginPresenter(LoginRepository loginReposity, BaseSchedulerProvider schedulerProvider){
+    public LoginPresenter(Context context, LoginRepository loginReposity, BaseSchedulerProvider schedulerProvider){
+        this.context = Preconditions.checkNotNull(context);
         mLoginReposity = Preconditions.checkNotNull(loginReposity);
         mSchedulerProvider = Preconditions.checkNotNull(schedulerProvider);
     }
@@ -40,13 +45,12 @@ public class LoginPresenter implements LoginContract.IPresenter{
     }
 
     private void handleLoginFailed(Throwable e) {
-        mView.hideLoadingIndicator();
-        mView.showLoginError(e);
     }
 
     private void handleLoginSuccess(LoginResponse loginResponse) {
         mView.hideLoadingIndicator();
         mView.startDashboardActivity();
+        AppPrefs.getInstance(context).putApiToken(loginResponse.getData().getToken());
     }
 
 }

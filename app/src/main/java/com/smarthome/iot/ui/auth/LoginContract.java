@@ -1,24 +1,15 @@
 package com.smarthome.iot.ui.auth;
 
-import com.smarthome.iot.ui.base.BasePresenter;
+import com.smarthome.iot.ui.base.IBasePresenter;
+import com.smarthome.iot.ui.base.IBaseView;
 
 public interface LoginContract {
 
-    interface IView{
-
-        void showLoadingIndicator();
-
-        void hideLoadingIndicator();
-
-        void showLoginError(Throwable throwable);
-
-        void startDashboardActivity();
+    interface IView extends IBaseView{
 
     }
 
-    interface IPresenter extends BasePresenter<LoginContract.IView>{
-
+    interface IPresenter extends IBasePresenter<IView> {
         void doLogin(String email, String password);
-
     }
 }

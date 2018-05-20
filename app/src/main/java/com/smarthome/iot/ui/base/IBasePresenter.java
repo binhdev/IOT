@@ -1,6 +1,6 @@
 package com.smarthome.iot.ui.base;
 
-public interface BasePresenter<T> {
+public interface IBasePresenter<T> {
     void setView(T view);
 
     void onStart();

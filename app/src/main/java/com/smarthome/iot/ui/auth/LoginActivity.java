@@ -4,19 +4,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.smarthome.iot.R;
 import com.smarthome.iot.data.repository.LoginRepository;
 import com.smarthome.iot.data.source.local.LoginLocalDataSource;
 import com.smarthome.iot.data.source.remote.LoginRemoteDataSource;
 import com.smarthome.iot.ui.base.BaseActivity;
-import com.smarthome.iot.ui.dashboard.DashboardActivity;
+import com.smarthome.iot.ui.main.MainActivity;
 import com.smarthome.iot.utils.navigator.Navigator;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 
 public class LoginActivity extends BaseActivity implements LoginContract.IView {
+
     private LoginContract.IPresenter mPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +29,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.IView {
     private void init(){
         LoginRepository loginRepository = LoginRepository.getInstance(LoginLocalDataSource.getInstance(),
                 LoginRemoteDataSource.getInstance(this));
-        mPresenter = new LoginPresenter(loginRepository, SchedulerProvider.getInstance());
+        mPresenter = new LoginPresenter(this, loginRepository, SchedulerProvider.getInstance());
         mPresenter.setView(this);
 
         dialogProgress = msgUtil.initCustomDialogProgress(this, null);
@@ -53,7 +54,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.IView {
     public void startDashboardActivity() {
         Navigator navigator = new Navigator(this);
         Bundle bundle = new Bundle();
-        navigator.startActivity(DashboardActivity.class, bundle);
+        navigator.startActivity(MainActivity.class, bundle);
     }
 
     public void clickHandle(View view){
