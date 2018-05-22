@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import com.smarthome.iot.R;
 import com.smarthome.iot.ui.base.BaseActivity;
 import com.smarthome.iot.ui.main.fragment.alarm.AlarmFragment;
-import com.smarthome.iot.ui.main.fragment.dashboard.DashboardFragment;
+import com.smarthome.iot.ui.main.fragment.position.PositionFragment;
 import com.smarthome.iot.ui.main.fragment.group.GroupFragment;
 import com.smarthome.iot.ui.main.fragment.notification.NotificationFragment;
 
@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity {
                 Fragment selectedFragment = null;
                 switch (item.getItemId()) {
                     case R.id.action_dashboard:
-                        selectedFragment = DashboardFragment.newInstance();
+                        selectedFragment = PositionFragment.newInstance();
                         break;
 
                     case R.id.action_group:
@@ -52,7 +52,7 @@ public class MainActivity extends BaseActivity {
         });
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, DashboardFragment.newInstance());
+        transaction.replace(R.id.frame_layout, PositionFragment.newInstance());
         transaction.commit();
     }
 }

@@ -1,14 +1,14 @@
 package com.smarthome.iot.ui.main.fragment.alarm;
 
-import com.smarthome.iot.ui.base.IBasePresenter;
-import com.smarthome.iot.ui.base.IBaseView;
+import com.smarthome.iot.ui.base.BasePresenter;
+import com.smarthome.iot.ui.base.BaseView;
 
 public interface IAlarmContract {
-    interface IView extends IBaseView{
+    interface IView extends BaseView {
 
     }
 
-    interface IPresenter extends IBasePresenter<IView>{
+    interface IPresenter extends BasePresenter<IView> {
 
     }
 }

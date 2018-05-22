@@ -8,7 +8,6 @@ import com.google.gson.GsonBuilder;
 import com.smarthome.iot.BuildConfig;
 import com.smarthome.iot.data.source.remote.apdater.BooleanAdapter;
 import com.smarthome.iot.data.source.remote.apdater.IntegerAdapter;
-import com.smarthome.iot.data.source.remote.api.IApiAuth;
 import com.smarthome.iot.data.source.remote.middleware.RxErrorHandlingCallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;

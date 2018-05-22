@@ -14,9 +14,9 @@ import com.smarthome.iot.ui.main.MainActivity;
 import com.smarthome.iot.utils.navigator.Navigator;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 
-public class LoginActivity extends BaseActivity implements LoginContract.IView {
+public class LoginActivity extends BaseActivity implements LoginContract.View {
 
-    private LoginContract.IPresenter mPresenter;
+    private LoginContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -33,13 +33,13 @@ public class DialogMessage extends Dialog implements OnClickListener {
 
 		processDialogMove = processMove;
 
-		imgIcon = (ImageView) findViewById(R.id.dialog_msg_icon);
-		txtTitle = (TextView) findViewById(R.id.dialog_msg_title);
-		txtContent = (TextView) findViewById(R.id.dialog_msg_content);
+		imgIcon = findViewById(R.id.dialog_msg_icon);
+		txtTitle = findViewById(R.id.dialog_msg_title);
+		txtContent = findViewById(R.id.dialog_msg_content);
 
-		btnOk = (Button) findViewById(R.id.dialog_msg_btnOK);
+		btnOk = findViewById(R.id.dialog_msg_btnOK);
 		btnOk.setOnClickListener(this);
-		btnCancel = (Button) findViewById(R.id.dialog_msg_btnCancel);
+		btnCancel = findViewById(R.id.dialog_msg_btnCancel);
 		btnCancel.setOnClickListener(this);
 
 		this.setInfo(title, content, isShowOk, isShowCancel);

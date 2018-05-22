@@ -1,8 +1,8 @@
 package com.smarthome.iot.ui.main.fragment.notification;
 
-public class NotificationPresenter implements INotificationContract.IPresenter {
+public class NotificationPresenter implements NotificationContract.IPresenter {
     @Override
-    public void setView(INotificationContract.IView view) {
+    public void setView(NotificationContract.IView view) {
 
     }
 

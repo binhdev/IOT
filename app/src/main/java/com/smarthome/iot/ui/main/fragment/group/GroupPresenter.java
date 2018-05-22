@@ -1,19 +1,14 @@
 package com.smarthome.iot.ui.main.fragment.group;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.common.base.Preconditions;
-import com.google.gson.Gson;
-import com.smarthome.iot.data.model.Group;
 import com.smarthome.iot.data.repository.GroupRepository;
 import com.smarthome.iot.data.source.remote.response.GroupListResponse;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
 
-import java.util.List;
-
-public class GroupPresenter implements IGroupContract.IPresenter {
-    private IGroupContract.IView mView;
+public class GroupPresenter implements GroupContract.Presenter {
+    private GroupContract.View mView;
     private GroupRepository mGroupRepository;
     private BaseSchedulerProvider mSchedulerProvider;
     private Context context;
@@ -24,7 +19,7 @@ public class GroupPresenter implements IGroupContract.IPresenter {
         mSchedulerProvider = Preconditions.checkNotNull(schedulerProvider);
     }
     @Override
-    public void setView(IGroupContract.IView view) {
+    public void setView(GroupContract.View view) {
         this.mView = view;
     }
 

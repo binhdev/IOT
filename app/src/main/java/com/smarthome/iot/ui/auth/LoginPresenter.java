@@ -8,8 +8,8 @@ import com.smarthome.iot.data.source.remote.response.LoginResponse;
 import com.smarthome.iot.utils.AppPrefs;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
 
-public class LoginPresenter implements LoginContract.IPresenter{
-    private LoginContract.IView mView;
+public class LoginPresenter implements LoginContract.Presenter{
+    private LoginContract.View mView;
     private LoginRepository mLoginReposity;
     private BaseSchedulerProvider mSchedulerProvider;
     private Context context;
@@ -21,7 +21,7 @@ public class LoginPresenter implements LoginContract.IPresenter{
         mSchedulerProvider = Preconditions.checkNotNull(schedulerProvider);
     }
     @Override
-    public void setView(LoginContract.IView view) {
+    public void setView(LoginContract.View view) {
         this.mView = view;
     }
 
@@ -40,7 +40,7 @@ public class LoginPresenter implements LoginContract.IPresenter{
         mView.showLoadingIndicator();
         mLoginReposity.doLogin(email, password)
                 .subscribeOn(mSchedulerProvider.io())
-                .subscribeOn(mSchedulerProvider.ui()).subscribe(loginResponse -> handleLoginSuccess(loginResponse),
+                .observeOn(mSchedulerProvider.ui()).subscribe(loginResponse -> handleLoginSuccess(loginResponse),
                 error -> handleLoginFailed(error));
     }
 

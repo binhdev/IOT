@@ -14,20 +14,16 @@ import android.view.ViewGroup;
 import com.smarthome.iot.R;
 import com.smarthome.iot.data.model.Group;
 import com.smarthome.iot.data.repository.GroupRepository;
-import com.smarthome.iot.data.repository.LoginRepository;
 import com.smarthome.iot.data.source.local.GroupLocalDataSource;
-import com.smarthome.iot.data.source.local.LoginLocalDataSource;
 import com.smarthome.iot.data.source.remote.GroupRemoteDataSource;
-import com.smarthome.iot.data.source.remote.LoginRemoteDataSource;
-import com.smarthome.iot.ui.auth.LoginPresenter;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupFragment extends Fragment implements IGroupContract.IView {
+public class GroupFragment extends Fragment implements GroupContract.View {
 
-    private IGroupContract.IPresenter mPresenter;
+    private GroupContract.Presenter mPresenter;
     private List<Group> groupList = new ArrayList<>();
     private RecyclerView rcGroupListView;
     private GroupAdapter mAdapter;

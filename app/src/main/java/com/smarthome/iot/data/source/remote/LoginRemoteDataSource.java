@@ -2,21 +2,20 @@ package com.smarthome.iot.data.source.remote;
 
 import android.content.Context;
 
-import com.smarthome.iot.data.source.ILoginDataSource;
-import com.smarthome.iot.data.source.remote.api.IApiAuth;
+import com.smarthome.iot.data.source.LoginDataSource;
+import com.smarthome.iot.data.source.remote.api.ApiAuth;
 import com.smarthome.iot.data.source.remote.response.LoginResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
+
 import io.reactivex.Single;
 
-public class LoginRemoteDataSource implements ILoginDataSource.RemoteDataSource {
+public class LoginRemoteDataSource implements LoginDataSource.RemoteDataSource {
 
     private static LoginRemoteDataSource instance;
 
-    private IApiAuth mApiAuth;
+    private ApiAuth mApiAuth;
 
-    public LoginRemoteDataSource(IApiAuth apiAuth){
+    public LoginRemoteDataSource(ApiAuth apiAuth){
         this.mApiAuth = apiAuth;
     }
 

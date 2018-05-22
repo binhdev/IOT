@@ -2,23 +2,23 @@ package com.smarthome.iot.data.source.remote;
 
 import android.content.Context;
 
-import com.smarthome.iot.data.source.IGroupDataSource;
-import com.smarthome.iot.data.source.remote.api.IApiGroup;
+import com.smarthome.iot.data.source.GroupDataSource;
+import com.smarthome.iot.data.source.remote.api.ApiGroup;
 import com.smarthome.iot.data.source.remote.response.GroupListResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
 import com.smarthome.iot.utils.AppPrefs;
 
 import io.reactivex.Single;
 
-public class GroupRemoteDataSource implements IGroupDataSource.RemoteDataSource {
+public class GroupRemoteDataSource implements GroupDataSource.RemoteDataSource {
 
     private static GroupRemoteDataSource instance;
 
-    private IApiGroup mApiGroup;
+    private ApiGroup mApiGroup;
 
     private Context context;
 
-    public GroupRemoteDataSource(IApiGroup mApiGroup){
+    public GroupRemoteDataSource(ApiGroup mApiGroup){
         this.mApiGroup = mApiGroup;
     }
 

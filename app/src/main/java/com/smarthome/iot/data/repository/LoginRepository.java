@@ -1,7 +1,7 @@
 package com.smarthome.iot.data.repository;
 
 import com.smarthome.iot.data.model.User;
-import com.smarthome.iot.data.source.ILoginDataSource;
+import com.smarthome.iot.data.source.LoginDataSource;
 import com.smarthome.iot.data.source.local.LoginLocalDataSource;
 import com.smarthome.iot.data.source.remote.LoginRemoteDataSource;
 import com.smarthome.iot.data.source.remote.response.LoginResponse;
@@ -10,7 +10,7 @@ import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
 
-public class LoginRepository implements ILoginDataSource.LocalDataSource, ILoginDataSource.RemoteDataSource {
+public class LoginRepository implements LoginDataSource.LocalDataSource, LoginDataSource.RemoteDataSource {
 
     private static LoginRepository instance;
 

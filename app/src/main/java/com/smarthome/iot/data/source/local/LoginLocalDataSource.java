@@ -1,11 +1,11 @@
 package com.smarthome.iot.data.source.local;
 
 import com.smarthome.iot.data.model.User;
-import com.smarthome.iot.data.source.ILoginDataSource;
+import com.smarthome.iot.data.source.LoginDataSource;
 
 import io.reactivex.Observable;
 
-public class LoginLocalDataSource implements ILoginDataSource.LocalDataSource {
+public class LoginLocalDataSource implements LoginDataSource.LocalDataSource {
 
     private static LoginLocalDataSource instance;
 
