@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.google.common.base.Preconditions;
 import com.smarthome.iot.data.repository.PositionRepository;
-import com.smarthome.iot.data.source.remote.response.position.PositionListResponse;
+import com.smarthome.iot.data.source.remote.response.position.ListPositionResponse;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
 
 public class PositionPresenter implements PositionContract.Presenter {
@@ -44,7 +44,7 @@ public class PositionPresenter implements PositionContract.Presenter {
                         error -> handlePositionListFailed(error));
     }
 
-    private void handlePositionListSuccess(PositionListResponse positionListResponse){
+    private void handlePositionListSuccess(ListPositionResponse positionListResponse){
         mView.setPositionList(positionListResponse.getPositionList());
     }
 

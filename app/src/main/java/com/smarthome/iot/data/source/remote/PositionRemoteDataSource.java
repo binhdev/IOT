@@ -6,7 +6,7 @@ import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.source.PositionDataSource;
 import com.smarthome.iot.data.source.remote.api.ApiPosition;
 import com.smarthome.iot.data.source.remote.response.position.PositionCreateResponse;
-import com.smarthome.iot.data.source.remote.response.position.PositionListResponse;
+import com.smarthome.iot.data.source.remote.response.position.ListPositionResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
 import com.smarthome.iot.utils.AppPrefs;
 
@@ -46,7 +46,7 @@ public class PositionRemoteDataSource implements PositionDataSource.RemoteDataSo
     }
 
     @Override
-    public Single<PositionListResponse> positionList() {
+    public Single<ListPositionResponse> positionList() {
         return mApiPosition.positionList(AppPrefs.getInstance(context).getApiToken());
     }
 }

@@ -1,5 +1,6 @@
 package com.smarthome.iot.ui.main.fragment.position;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,8 @@ import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.repository.PositionRepository;
 import com.smarthome.iot.data.source.local.PositionLocalDataSource;
 import com.smarthome.iot.data.source.remote.PositionRemoteDataSource;
+import com.smarthome.iot.ui.device.DeviceActivity;
+import com.smarthome.iot.utils.navigator.Navigator;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 import com.smarthome.iot.ui.main.fragment.position.adapter.PositionViewHolder;
 import com.unnamed.b.atv.model.TreeNode;
@@ -154,6 +157,9 @@ public class PositionFragment extends Fragment implements PositionContract.View 
         public boolean onLongClick(TreeNode node, Object value) {
             PositionViewHolder.IconTreeItem item = (PositionViewHolder.IconTreeItem) value;
             Toast.makeText(getActivity(), "Long click: " + item.text, Toast.LENGTH_SHORT).show();
+
+            Navigator navigator = new Navigator((Activity)getContext());
+            navigator.startActivity(DeviceActivity.class);
             return true;
         }
     };

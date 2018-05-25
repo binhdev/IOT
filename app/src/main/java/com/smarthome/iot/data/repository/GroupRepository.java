@@ -4,7 +4,7 @@ import com.smarthome.iot.data.model.User;
 import com.smarthome.iot.data.source.GroupDataSource;
 import com.smarthome.iot.data.source.local.GroupLocalDataSource;
 import com.smarthome.iot.data.source.remote.GroupRemoteDataSource;
-import com.smarthome.iot.data.source.remote.response.group.GroupListResponse;
+import com.smarthome.iot.data.source.remote.response.group.ListGroupResponse;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -43,7 +43,7 @@ public class GroupRepository implements GroupDataSource.LocalDataSource, GroupDa
     }
 
     @Override
-    public Single<GroupListResponse> groupList() {
+    public Single<ListGroupResponse> groupList() {
         return mGroupRemoteDataSource.groupList();
     }
 }

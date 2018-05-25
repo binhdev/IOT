@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:background="@drawable/shape_border">
 
-    <com.daimajia.swipe.SwipeLayout xmlns:swipe="http://schemas.android.com/apk/res-auto"
+    <com.daimajia.swipe.SwipeLayout
+        xmlns:swipe="http://schemas.android.com/apk/res-auto"
         android:id="@+id/swipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

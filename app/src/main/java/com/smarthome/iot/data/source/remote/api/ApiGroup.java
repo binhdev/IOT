@@ -1,6 +1,6 @@
 package com.smarthome.iot.data.source.remote.api;
 
-import com.smarthome.iot.data.source.remote.response.group.GroupListResponse;
+import com.smarthome.iot.data.source.remote.response.group.ListGroupResponse;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -23,7 +23,7 @@ public interface ApiGroup {
 
     @Headers({"Content-Type:application/json"})
     @GET("group/list")
-    Single<GroupListResponse> groupList(@Header("Token") String token);
+    Single<ListGroupResponse> groupList(@Header("Token") String token);
 
     @DELETE("group/delete/{id}")
     Observable deleteGroup(@Path("id") String id);

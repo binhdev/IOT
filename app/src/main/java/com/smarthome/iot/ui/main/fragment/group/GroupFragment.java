@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.smarthome.iot.data.model.Group;
 import com.smarthome.iot.data.repository.GroupRepository;
 import com.smarthome.iot.data.source.local.GroupLocalDataSource;
 import com.smarthome.iot.data.source.remote.GroupRemoteDataSource;
+import com.smarthome.iot.ui.main.fragment.group.adapter.GroupAdapter;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
@@ -56,6 +58,7 @@ public class GroupFragment extends Fragment implements GroupContract.View {
         rcGroupListView.setLayoutManager(mLayoutManager);
         rcGroupListView.setItemAnimator(new DefaultItemAnimator());
         rcGroupListView.setAdapter(mAdapter);
+        rcGroupListView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
         initData();
     }

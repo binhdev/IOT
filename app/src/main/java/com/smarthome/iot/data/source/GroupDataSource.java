@@ -1,7 +1,7 @@
 package com.smarthome.iot.data.source;
 
 import com.smarthome.iot.data.model.User;
-import com.smarthome.iot.data.source.remote.response.group.GroupListResponse;
+import com.smarthome.iot.data.source.remote.response.group.ListGroupResponse;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -17,6 +17,6 @@ public interface GroupDataSource {
     }
 
     interface RemoteDataSource{
-        Single<GroupListResponse> groupList();
+        Single<ListGroupResponse> groupList();
     }
 }

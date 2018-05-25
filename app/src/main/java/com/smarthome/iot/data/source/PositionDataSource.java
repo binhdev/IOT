@@ -1,7 +1,7 @@
 package com.smarthome.iot.data.source;
 import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.source.remote.response.position.PositionCreateResponse;
-import com.smarthome.iot.data.source.remote.response.position.PositionListResponse;
+import com.smarthome.iot.data.source.remote.response.position.ListPositionResponse;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -18,6 +18,6 @@ public interface PositionDataSource {
 
         Observable deletePosition(@NonNull Position position);
 
-        Single<PositionListResponse> positionList();
+        Single<ListPositionResponse> positionList();
     }
 }

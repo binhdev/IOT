@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.smarthome.iot.BuildConfig;
 import com.smarthome.iot.data.source.remote.apdater.BooleanAdapter;
 import com.smarthome.iot.data.source.remote.apdater.IntegerAdapter;
+import com.smarthome.iot.data.source.remote.apdater.SingleToArrayTypeAdapter;
 import com.smarthome.iot.data.source.remote.middleware.RxErrorHandlingCallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
@@ -67,6 +68,7 @@ public class ServiceClient {
                 .registerTypeAdapter(boolean.class, booleanAdapter)
                 .registerTypeAdapter(Integer.class, integerAdapter)
                 .registerTypeAdapter(int.class, integerAdapter)
+                .registerTypeAdapterFactory(SingleToArrayTypeAdapter.FACTORY)
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
