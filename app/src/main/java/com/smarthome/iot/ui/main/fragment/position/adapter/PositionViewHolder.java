@@ -38,12 +38,20 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
         tvValue = view.findViewById(R.id.node_value);
         tvValue.setText(value.text);
 
-        final PrintView iconView = view.findViewById(R.id.icon);
-        iconView.setIconText(context.getResources().getString(value.icon));
+//        final PrintView iconView = view.findViewById(R.id.icon);
+//        iconView.setIconText(context.getResources().getString(value.icon));
 
         arrowView = view.findViewById(R.id.arrow_icon);
 
-        view.findViewById(R.id.btn_addFolder).setOnClickListener(v -> {
+        view.findViewById(R.id.arrow_icon).setOnClickListener(v -> {
+            tView.toggleNode(node);
+        });
+
+        view.findViewById(R.id.icon).setOnClickListener(v -> {
+            tView.toggleNode(node);
+        });
+
+        view.findViewById(R.id.btn_add).setOnClickListener(v -> {
             PositionCreateDialog positionCreateDialog = new PositionCreateDialog(context);
             positionCreateDialog.setListener(new PositionCreateDialog.PositionCreateDialogListener() {
                 @Override

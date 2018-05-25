@@ -85,6 +85,7 @@ public class PositionFragment extends Fragment implements PositionContract.View 
         tView.setDefaultViewHolder(PositionViewHolder.class);
         tView.setDefaultNodeClickListener(nodeClickListener);
         tView.setDefaultNodeLongClickListener(nodeLongClickListener);
+        tView.setUseAutoToggle(false);
 
         for(int i = 0; i < positionList.size(); i++){
             computerRoot.addChild(makeTree(positionList.get(i)));
@@ -149,6 +150,8 @@ public class PositionFragment extends Fragment implements PositionContract.View 
         @Override
         public void onClick(TreeNode node, Object value) {
             PositionViewHolder.IconTreeItem item = (PositionViewHolder.IconTreeItem) value;
+            Navigator navigator = new Navigator((Activity)getContext());
+            navigator.startActivity(DeviceActivity.class);
         }
     };
 
@@ -158,8 +161,6 @@ public class PositionFragment extends Fragment implements PositionContract.View 
             PositionViewHolder.IconTreeItem item = (PositionViewHolder.IconTreeItem) value;
             Toast.makeText(getActivity(), "Long click: " + item.text, Toast.LENGTH_SHORT).show();
 
-            Navigator navigator = new Navigator((Activity)getContext());
-            navigator.startActivity(DeviceActivity.class);
             return true;
         }
     };

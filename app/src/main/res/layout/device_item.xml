@@ -67,15 +67,15 @@
             android:elevation="5dp"
             android:padding="5dp">
             <ImageView
-                android:id="@+id/ic_group"
-                android:src="@drawable/ic_group"
+                android:id="@+id/ic_device"
+                android:src="@drawable/ic_device"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:gravity="center_vertical"/>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/ic_group"
+                android:layout_toRightOf="@+id/ic_device"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical">
                 <TextView

@@ -31,7 +31,7 @@ public class GroupAdapter extends RecyclerView.Adapter<GroupAdapter.ViewHolder> 
             mSwipeLayout = view.findViewById(R.id.swipe);
             mName = view.findViewById(R.id.tv_name);
             mDescription = view.findViewById(R.id.tv_description);
-            mButtonDelete = view.findViewById(R.id.delete);
+//            mButtonDelete = view.findViewById(R.id.delete);
         }
     }
 
