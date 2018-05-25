@@ -1,6 +1,7 @@
 package com.smarthome.iot.ui.main.fragment.position.adapter;
 
 import android.content.Context;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import com.smarthome.iot.data.repository.PositionRepository;
 import com.smarthome.iot.data.source.local.PositionLocalDataSource;
 import com.smarthome.iot.data.source.remote.PositionRemoteDataSource;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
+import com.smarthome.iot.utils.widget.dialog.PositionCreateDialog;
 import com.unnamed.b.atv.model.TreeNode;
 
 public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionViewHolder.IconTreeItem> implements PositionHolderContract.View {
@@ -42,7 +44,24 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
         arrowView = view.findViewById(R.id.arrow_icon);
 
         view.findViewById(R.id.btn_addFolder).setOnClickListener(v -> {
-            mPresenter.createPosition(value.mPosition);
+            PositionCreateDialog positionCreateDialog = new PositionCreateDialog(context);
+            positionCreateDialog.setListener(new PositionCreateDialog.PositionCreateDialogListener() {
+                @Override
+                public void onOkay(String name, String description) {
+                    Position position = new Position();
+                    position.setName(name);
+                    position.setDescription(description);
+                    position.setParentId(value.mPosition.getId());
+                    mPresenter.createPosition(position);
+                }
+
+                @Override
+                public void onCacel() {
+
+                }
+            });
+
+            positionCreateDialog.show();
         });
 
         view.findViewById(R.id.btn_delete).setOnClickListener(v -> {
@@ -91,7 +110,7 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
 
     @Override
     public void createPositionSuccess() {
-
+        Toast.makeText(context, "Success create position", Toast.LENGTH_LONG).show();
     }
 
     @Override

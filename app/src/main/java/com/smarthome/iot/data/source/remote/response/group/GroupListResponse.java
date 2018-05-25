@@ -1,9 +1,10 @@
-package com.smarthome.iot.data.source.remote.response;
+package com.smarthome.iot.data.source.remote.response.group;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.smarthome.iot.data.model.Group;
 import com.smarthome.iot.data.model.Pagination;
+import com.smarthome.iot.data.source.remote.response.BaseResponse;
 
 import java.util.List;
 

@@ -1,7 +1,15 @@
 <resources>
     <string name="app_name">IOT</string>
     <string name="title_activity_login">LoginActivity</string>
-    
+
+    <!--Position-->
+    <string name="add_position">Thêm mới vị trí</string>
+    <string name="position_name">Tên:</string>
+    <string name="position_descrition">Mô tả:</string>
+    <string name="position_parent">Vị trí cha:</string>
+    <string name="hint_position_name">Nhập tên vị trí</string>
+    <string name="hint_position_description">Nhập mô tả vị trí</string>
+
     <string name="item_dashboard">Dashboard</string>
     <string name="item_group">Group</string>
     <string name="item_alarm">Alarm</string>

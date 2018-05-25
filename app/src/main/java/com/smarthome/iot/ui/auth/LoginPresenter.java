@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.google.common.base.Preconditions;
 import com.smarthome.iot.data.repository.LoginRepository;
-import com.smarthome.iot.data.source.remote.response.LoginResponse;
+import com.smarthome.iot.data.source.remote.response.auth.LoginResponse;
 import com.smarthome.iot.utils.AppPrefs;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
 

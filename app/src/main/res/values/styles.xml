@@ -28,4 +28,9 @@
         <item name="android:divider">@android:drawable/divider_horizontal_bright</item>
     </style>
 
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_top_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_top_out</item>
+    </style>
+
 </resources>

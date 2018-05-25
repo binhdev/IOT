@@ -1,6 +1,6 @@
 package com.smarthome.iot.data.source.remote.api;
 
-import com.smarthome.iot.data.source.remote.response.GroupListResponse;
+import com.smarthome.iot.data.source.remote.response.group.GroupListResponse;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;

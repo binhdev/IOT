@@ -16,6 +16,7 @@
     <color name="colorBackground">#FBE9E7</color>
     <color name="colorLight">#F0F6F5</color>
     <color name="colorHint">#CCCCCC</color>
+    <color name="colorGreen">#4CAF50</color>
 
     <color name="transparent">@android:color/transparent</color>
     <color name="backgroundColor">#E8E8E0</color>

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.smarthome.iot.data.source.LoginDataSource;
 import com.smarthome.iot.data.source.remote.api.ApiAuth;
-import com.smarthome.iot.data.source.remote.response.LoginResponse;
+import com.smarthome.iot.data.source.remote.response.auth.LoginResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
 
 import io.reactivex.Single;
