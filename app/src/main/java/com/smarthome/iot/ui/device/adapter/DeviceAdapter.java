@@ -24,14 +24,12 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         public SwipeLayout mSwipeLayout;
         public TextView mName;
         public TextView mDescription;
-        Button mButtonDelete;
 
         public ViewHolder(View view){
             super(view);
             mSwipeLayout = view.findViewById(R.id.swipe);
             mName = view.findViewById(R.id.tv_name);
             mDescription = view.findViewById(R.id.tv_description);
-            mButtonDelete = view.findViewById(R.id.delete);
         }
     }
 
@@ -43,7 +41,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
     @Override
     public DeviceAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.group_item, parent, false);
+                .inflate(R.layout.device_item, parent, false);
         return new DeviceAdapter.ViewHolder(view);
     }
 

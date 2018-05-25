@@ -2,6 +2,7 @@ package com.smarthome.iot.data.source.remote.api;
 
 import com.smarthome.iot.data.source.remote.response.position.PositionCreateResponse;
 import com.smarthome.iot.data.source.remote.response.position.ListPositionResponse;
+import com.smarthome.iot.data.source.remote.response.position.PositionDeleteResponse;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -21,7 +22,7 @@ public interface ApiPosition {
     Single<ListPositionResponse> positionList(@Header("Token") String token);
 
     @PUT("position/delete")
-    Observable deletePosition(@Header("Token") String token, @Path("id") String id);
+    Single<PositionDeleteResponse> deletePosition(@Header("Token") String token, @Path("id") String id);
 
     @POST("position/add")
     Single<PositionCreateResponse> createPostion(@Header("Token") String token, @Query("name") String name,

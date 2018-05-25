@@ -35,6 +35,7 @@ public class GroupPresenter implements GroupContract.Presenter {
 
     @Override
     public void groupList() {
+        mView.showLoadingIndicator();
         mGroupRepository.groupList()
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
@@ -44,6 +45,7 @@ public class GroupPresenter implements GroupContract.Presenter {
 
     private void handleGroupListSuccess(ListGroupResponse groupListResponse){
         mView.setGroupListView(groupListResponse.getData().getGroups());
+        mView.hideLoadingIndicator();
     }
 
     private void handleGroupListFailed(Throwable err){

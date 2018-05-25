@@ -20,6 +20,7 @@ import com.smarthome.iot.data.repository.PositionRepository;
 import com.smarthome.iot.data.source.local.PositionLocalDataSource;
 import com.smarthome.iot.data.source.remote.PositionRemoteDataSource;
 import com.smarthome.iot.ui.device.DeviceActivity;
+import com.smarthome.iot.ui.main.fragment.BaseFragment;
 import com.smarthome.iot.utils.navigator.Navigator;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 import com.smarthome.iot.ui.main.fragment.position.adapter.PositionViewHolder;
@@ -28,7 +29,7 @@ import com.unnamed.b.atv.view.AndroidTreeView;
 
 import java.util.List;
 
-public class PositionFragment extends Fragment implements PositionContract.View {
+public class PositionFragment extends BaseFragment implements PositionContract.View {
 
     private PositionContract.Presenter mPresenter;
     private ViewGroup containerView;
@@ -76,6 +77,8 @@ public class PositionFragment extends Fragment implements PositionContract.View 
     @Override
     public void setPositionList(List<Position> positionList) {
         TreeNode root = TreeNode.root();
+        Position positionRoot = new Position();
+        positionRoot.setId(1);
         TreeNode computerRoot = new TreeNode(new PositionViewHolder.IconTreeItem(R.string.ic_folder, "All Position", null));
         root.addChildren(computerRoot);
 
@@ -85,6 +88,7 @@ public class PositionFragment extends Fragment implements PositionContract.View 
         tView.setDefaultViewHolder(PositionViewHolder.class);
         tView.setDefaultNodeClickListener(nodeClickListener);
         tView.setDefaultNodeLongClickListener(nodeLongClickListener);
+        tView.setUseAutoToggle(false);
 
         for(int i = 0; i < positionList.size(); i++){
             computerRoot.addChild(makeTree(positionList.get(i)));
@@ -105,12 +109,12 @@ public class PositionFragment extends Fragment implements PositionContract.View 
 
     @Override
     public void showLoadingIndicator() {
-
+        dialogProgress.show();
     }
 
     @Override
     public void hideLoadingIndicator() {
-
+        dialogProgress.dismiss();
     }
 
     @Override
@@ -149,6 +153,8 @@ public class PositionFragment extends Fragment implements PositionContract.View 
         @Override
         public void onClick(TreeNode node, Object value) {
             PositionViewHolder.IconTreeItem item = (PositionViewHolder.IconTreeItem) value;
+            Navigator navigator = new Navigator((Activity)getContext());
+            navigator.startActivity(DeviceActivity.class);
         }
     };
 
@@ -158,8 +164,6 @@ public class PositionFragment extends Fragment implements PositionContract.View 
             PositionViewHolder.IconTreeItem item = (PositionViewHolder.IconTreeItem) value;
             Toast.makeText(getActivity(), "Long click: " + item.text, Toast.LENGTH_SHORT).show();
 
-            Navigator navigator = new Navigator((Activity)getContext());
-            navigator.startActivity(DeviceActivity.class);
             return true;
         }
     };

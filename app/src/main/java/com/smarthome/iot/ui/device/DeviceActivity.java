@@ -5,6 +5,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -31,6 +32,10 @@ public class DeviceActivity extends BaseActivity implements DeviceContract.View 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_device);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         initGUI();
     }
@@ -59,12 +64,12 @@ public class DeviceActivity extends BaseActivity implements DeviceContract.View 
 
     @Override
     public void showLoadingIndicator() {
-
+        dialogProgress.show();
     }
 
     @Override
     public void hideLoadingIndicator() {
-
+        dialogProgress.dismiss();
     }
 
     @Override
@@ -82,5 +87,11 @@ public class DeviceActivity extends BaseActivity implements DeviceContract.View 
         Gson gson = new Gson();
         Log.i("list device", gson.toJson(dataList));
         mAdapter.add(dataList);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

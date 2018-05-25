@@ -2,19 +2,16 @@ package com.smarthome.iot.data.source.remote.response.position;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.source.remote.response.BaseResponse;
 
 import java.util.List;
 
-public class ListPositionResponse extends BaseResponse {
-
+public class PositionDeleteResponse extends BaseResponse {
     @SerializedName("data")
     @Expose
-    private List<Position> positionList;
+    private List<Object> data;
 
-    public List<Position> getPositionList(){
-        return positionList;
+    public List<Object> getData(){
+        return data;
     }
-
 }

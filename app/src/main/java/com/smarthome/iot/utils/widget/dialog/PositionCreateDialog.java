@@ -10,7 +10,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.smarthome.iot.R;
 
@@ -27,7 +26,7 @@ public class PositionCreateDialog extends Dialog implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.dialog_create_position);
+        setContentView(R.layout.form_position);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -35,9 +34,10 @@ public class PositionCreateDialog extends Dialog implements View.OnClickListener
         lp.gravity = Gravity.BOTTOM;
         lp.windowAnimations = R.style.DialogAnimation;
         getWindow().setAttributes(lp);
+        getWindow().setGravity(Gravity.CENTER);
 
 
-        ImageView btnClose = findViewById(R.id.btn_dialog_close);
+        Button btnClose = findViewById(R.id.btn_close);
         btnClose.setOnClickListener(this);
 
         Button btnSave = findViewById(R.id.btn_save);
@@ -53,7 +53,7 @@ public class PositionCreateDialog extends Dialog implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btn_dialog_close:
+            case R.id.btn_close:
                 listener.onCacel();
                 break;
             case R.id.btn_save:

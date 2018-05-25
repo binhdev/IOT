@@ -37,6 +37,7 @@ public class PositionPresenter implements PositionContract.Presenter {
 
     @Override
     public void positionList() {
+        mView.showLoadingIndicator();
         mPositionRepository.positionList()
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
@@ -46,6 +47,7 @@ public class PositionPresenter implements PositionContract.Presenter {
 
     private void handlePositionListSuccess(ListPositionResponse positionListResponse){
         mView.setPositionList(positionListResponse.getPositionList());
+        mView.hideLoadingIndicator();
     }
 
     private void handlePositionListFailed(Throwable err){
