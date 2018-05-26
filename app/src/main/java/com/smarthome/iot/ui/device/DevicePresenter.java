@@ -22,6 +22,7 @@ public class DevicePresenter implements DeviceContract.Presenter {
 
     @Override
     public void deviceList(String pagination) {
+        mView.showLoadingIndicator();
         mDeviceRepository.deviceList()
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
@@ -31,6 +32,7 @@ public class DevicePresenter implements DeviceContract.Presenter {
 
     private void handleDeviceListSuccess(ListDeviceResponse deviceListResponse){
         mView.setDeviceResponseList(deviceListResponse.getDeviceResponseList());
+        mView.hideLoadingIndicator();
     }
 
     private void handleDeviceListFailed(Throwable err){

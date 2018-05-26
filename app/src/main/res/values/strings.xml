@@ -9,6 +9,7 @@
     <string name="position_parent">Vị trí cha:</string>
     <string name="hint_position_name">Nhập tên vị trí</string>
     <string name="hint_position_description">Nhập mô tả vị trí</string>
+    <string name="add_new_position">Thêm mới vị trí</string>
 
     <string name="item_dashboard">Position</string>
     <string name="item_group">Group</string>

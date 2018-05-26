@@ -1,27 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="350dp"
-    android:background="#2D3035">
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
     <RelativeLayout
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:padding="5dp"
-        android:gravity="center_vertical">
-        <TextView
-            android:text="@string/add_position"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:textStyle="bold"/>
+        android:layout_height="80dp"
+        android:gravity="center_vertical"
+        android:background="@color/colorPrimary">
         <ImageView
-            android:id="@+id/btn_dialog_close"
-            android:background="@drawable/ic_close"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:clickable="true"
-            android:layout_alignParentRight="true"/>
+            android:background="@drawable/logo_skype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
     <View
         android:id="@+id/hr"
@@ -29,20 +20,33 @@
         android:layout_height="1dp"
         android:background="@color/colorDivide"
         android:layout_below="@+id/title_bar"
-        android:layout_marginTop="2dp"
         android:layout_marginBottom="10dp"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
         android:layout_below="@+id/hr">
+        <TextView
+            android:id="@+id/title"
+            android:text="@string/add_new_position"
+            android:textSize="20sp"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
         <LinearLayout
             android:id="@+id/name_part"
+            android:layout_below="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="5dp">
             <TextView
                 android:text="@string/position_name"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
@@ -66,6 +70,8 @@
             android:padding="5dp">
             <TextView
                 android:text="@string/position_descrition"
+                android:textColor="@color/colorBlack"
+                android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
@@ -75,31 +81,38 @@
                 android:textColorHint="@color/colorDivide"
                 android:layout_weight="3"
                 android:layout_width="0dp"
-                android:layout_height="150dp"
+                android:layout_height="128dp"
                 android:textColor="@color/colorBlack"
                 android:padding="10dp"
                 android:background="@drawable/dialog_border_corner"/>
         </LinearLayout>
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/position_button"
             android:layout_below="@+id/description_part"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
             android:padding="5dp">
-            <View
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btn_close"
+                android:text="Cancel"
+                android:textColor="@color/colorRed"
+                android:textStyle="bold"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="@color/transparent"
+                android:layout_marginRight="5dp"/>
             <Button
                 android:id="@+id/btn_save"
                 android:text="Save"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorBlue"
                 android:textStyle="bold"
-                android:layout_weight="3"
-                android:layout_width="0dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:background="@color/colorGreen"/>
-        </LinearLayout>
+                android:background="@color/transparent"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"/>
+        </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>

@@ -37,10 +37,6 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
         final View view = inflater.inflate(R.layout.layout_icon_node, null, false);
         tvValue = view.findViewById(R.id.node_value);
         tvValue.setText(value.text);
-
-//        final PrintView iconView = view.findViewById(R.id.icon);
-//        iconView.setIconText(context.getResources().getString(value.icon));
-
         arrowView = view.findViewById(R.id.arrow_icon);
 
         view.findViewById(R.id.arrow_icon).setOnClickListener(v -> {
@@ -119,6 +115,7 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
     @Override
     public void createPositionSuccess() {
         Toast.makeText(context, "Success create position", Toast.LENGTH_LONG).show();
+        getTreeView().expandAll();
     }
 
     @Override

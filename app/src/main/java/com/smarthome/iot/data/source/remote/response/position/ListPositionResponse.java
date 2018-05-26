@@ -16,4 +16,5 @@ public class ListPositionResponse extends BaseResponse {
     public List<Position> getPositionList(){
         return positionList;
     }
+
 }

@@ -17,13 +17,14 @@ import com.smarthome.iot.data.model.Group;
 import com.smarthome.iot.data.repository.GroupRepository;
 import com.smarthome.iot.data.source.local.GroupLocalDataSource;
 import com.smarthome.iot.data.source.remote.GroupRemoteDataSource;
+import com.smarthome.iot.ui.main.fragment.BaseFragment;
 import com.smarthome.iot.ui.main.fragment.group.adapter.GroupAdapter;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupFragment extends Fragment implements GroupContract.View {
+public class GroupFragment extends BaseFragment implements GroupContract.View {
 
     private GroupContract.Presenter mPresenter;
     private List<Group> groupList = new ArrayList<>();
@@ -75,12 +76,12 @@ public class GroupFragment extends Fragment implements GroupContract.View {
 
     @Override
     public void showLoadingIndicator() {
-
+        dialogProgress.show();
     }
 
     @Override
     public void hideLoadingIndicator() {
-
+        dialogProgress.dismiss();
     }
 
     @Override

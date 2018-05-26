@@ -5,7 +5,7 @@ import android.content.Context;
 import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.source.PositionDataSource;
 import com.smarthome.iot.data.source.remote.api.ApiPosition;
-import com.smarthome.iot.data.source.remote.response.position.PositionCreateResponse;
+import com.smarthome.iot.data.source.remote.response.BaseResponse;
 import com.smarthome.iot.data.source.remote.response.position.ListPositionResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
 import com.smarthome.iot.utils.AppPrefs;
@@ -34,13 +34,13 @@ public class PositionRemoteDataSource implements PositionDataSource.RemoteDataSo
     }
 
     @Override
-    public Single<PositionCreateResponse> createPosition(Position position) {
+    public Single<BaseResponse> createPosition(Position position) {
         return mApiPosition.createPostion(AppPrefs.getInstance(context).getApiToken(),
                 position.getName(), position.getDescription(), position.getParentId());
     }
 
     @Override
-    public Observable deletePosition(Position position) {
+    public Single<BaseResponse> deletePosition(Position position) {
         return mApiPosition.deletePosition(AppPrefs.getInstance(context).getApiToken(),
                 position.getId().toString());
     }
