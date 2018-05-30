@@ -1,6 +1,6 @@
 package com.smarthome.iot.data.source;
 
-import com.smarthome.iot.data.source.remote.response.device.ListDeviceResponse;
+import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 
 import io.reactivex.Single;
 
@@ -11,6 +11,8 @@ public interface DeviceDataSource {
 
     interface RemoteDataSource{
 
-        Single<ListDeviceResponse> deviceList();
+        Single<DeviceResponse> deviceList();
+
+        Single<DeviceResponse> deviceByPosition(int positionId);
     }
 }

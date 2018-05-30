@@ -6,11 +6,12 @@ import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.source.PositionDataSource;
 import com.smarthome.iot.data.source.remote.api.ApiPosition;
 import com.smarthome.iot.data.source.remote.response.BaseResponse;
-import com.smarthome.iot.data.source.remote.response.position.ListPositionResponse;
+import com.smarthome.iot.data.source.remote.response.position.PositionResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
+import com.smarthome.iot.utils.AppConstants;
 import com.smarthome.iot.utils.AppPrefs;
+import com.smarthome.iot.utils.helper.StringHelper;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
 public class PositionRemoteDataSource implements PositionDataSource.RemoteDataSource {
@@ -35,18 +36,32 @@ public class PositionRemoteDataSource implements PositionDataSource.RemoteDataSo
 
     @Override
     public Single<BaseResponse> createPosition(Position position) {
-        return mApiPosition.createPostion(AppPrefs.getInstance(context).getApiToken(),
+        return mApiPosition.createPostion(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),
                 position.getName(), position.getDescription(), position.getParentId());
     }
 
     @Override
-    public Single<BaseResponse> deletePosition(Position position) {
-        return mApiPosition.deletePosition(AppPrefs.getInstance(context).getApiToken(),
-                position.getId().toString());
+    public Single<BaseResponse> editPosition(Position position) {
+        return mApiPosition.editPosition(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,
+                AppPrefs.getInstance(context).getApiAccessToken()),
+                position.getId(), position.getName(), position.getDescription(), position.getParentId());
     }
 
     @Override
-    public Single<ListPositionResponse> positionList() {
-        return mApiPosition.positionList(AppPrefs.getInstance(context).getApiToken());
+    public Single<BaseResponse> deletePosition(int[] ids) {
+        return mApiPosition.deletePosition(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),
+                ids);
+    }
+
+    @Override
+    public Single<PositionResponse> positionTreeStructure() {
+        return mApiPosition.positionTreeStructure(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken())
+        , "false");
+    }
+
+    @Override
+    public Single<PositionResponse> allPosition() {
+        return mApiPosition.allPosition(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),
+                "false");
     }
 }

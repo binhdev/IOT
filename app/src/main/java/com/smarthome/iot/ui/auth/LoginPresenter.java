@@ -49,8 +49,9 @@ public class LoginPresenter implements LoginContract.Presenter{
 
     private void handleLoginSuccess(LoginResponse loginResponse) {
         mView.hideLoadingIndicator();
+        AppPrefs.getInstance(context).putApiAccessToken(loginResponse.getData().getAccessToken());
+        AppPrefs.getInstance(context).putApiRefreshToken(loginResponse.getData().getRefreshToken());
         mView.startDashboardActivity();
-        AppPrefs.getInstance(context).putApiToken(loginResponse.getData().getToken());
     }
 
 }

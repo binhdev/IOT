@@ -5,9 +5,8 @@ import com.smarthome.iot.data.source.PositionDataSource;
 import com.smarthome.iot.data.source.local.PositionLocalDataSource;
 import com.smarthome.iot.data.source.remote.PositionRemoteDataSource;
 import com.smarthome.iot.data.source.remote.response.BaseResponse;
-import com.smarthome.iot.data.source.remote.response.position.ListPositionResponse;
+import com.smarthome.iot.data.source.remote.response.position.PositionResponse;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
 
@@ -39,12 +38,22 @@ public class PositionRepository implements PositionDataSource.LocalDataSource, P
     }
 
     @Override
-    public Single<BaseResponse> deletePosition(Position position) {
-        return mPositionRemoteDataSource.deletePosition(position);
+    public Single<BaseResponse> editPosition(Position position) {
+        return mPositionRemoteDataSource.editPosition(position);
     }
 
     @Override
-    public Single<ListPositionResponse> positionList() {
-        return mPositionRemoteDataSource.positionList();
+    public Single<BaseResponse> deletePosition(int[] ids) {
+        return mPositionRemoteDataSource.deletePosition(ids);
+    }
+
+    @Override
+    public Single<PositionResponse> positionTreeStructure() {
+        return mPositionRemoteDataSource.positionTreeStructure();
+    }
+
+    @Override
+    public Single<PositionResponse> allPosition() {
+        return mPositionRemoteDataSource.allPosition();
     }
 }

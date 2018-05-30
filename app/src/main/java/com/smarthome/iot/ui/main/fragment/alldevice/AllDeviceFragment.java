@@ -15,7 +15,7 @@ import com.smarthome.iot.R;
 import com.smarthome.iot.data.repository.DeviceRepository;
 import com.smarthome.iot.data.source.local.DeviceLocalDataSource;
 import com.smarthome.iot.data.source.remote.DeviceRemoteDataSource;
-import com.smarthome.iot.data.source.remote.response.device.ListDeviceResponse;
+import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 import com.smarthome.iot.ui.device.adapter.DeviceAdapter;
 import com.smarthome.iot.ui.main.fragment.BaseFragment;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
@@ -26,7 +26,7 @@ import java.util.List;
 public class AllDeviceFragment extends BaseFragment implements AllDeviceContract.View {
 
     private AllDeviceContract.Presenter mPresenter;
-    private List<ListDeviceResponse.Data> dataList = new ArrayList<>();
+    private List<DeviceResponse.Data> dataList = new ArrayList<>();
     private RecyclerView rcDeviceResponseListView;
     private DeviceAdapter mAdapter;
 
@@ -71,7 +71,7 @@ public class AllDeviceFragment extends BaseFragment implements AllDeviceContract
     }
 
     @Override
-    public void setDeviceResponseList(List<ListDeviceResponse.Data> deviceResponseList) {
+    public void setDeviceResponseList(List<DeviceResponse.Data> deviceResponseList) {
         mAdapter.add(deviceResponseList);
     }
 

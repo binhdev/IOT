@@ -16,13 +16,23 @@ public class AppPrefs {
         return instance;
     }
 
-    public void putApiToken(String value){
+    public void putApiAccessToken(String value){
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(AppConstants.API_TOKEN, value);
+        editor.putString(AppConstants.API_ACCESS_TOKEN, value);
         editor.commit();
     }
 
-    public String getApiToken(){
-        return preferences.getString(AppConstants.API_TOKEN,AppConstants.API_TOKEN_DEFAULT);
+    public String getApiAccessToken(){
+        return preferences.getString(AppConstants.API_ACCESS_TOKEN,AppConstants.API_TOKEN_DEFAULT);
+    }
+
+    public void putApiRefreshToken(String value){
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(AppConstants.API_REFRESH_TOKEN, value);
+        editor.commit();
+    }
+
+    public String getApiRefreshToken(){
+        return preferences.getString(AppConstants.API_REFRESH_TOKEN,AppConstants.API_TOKEN_DEFAULT);
     }
 }

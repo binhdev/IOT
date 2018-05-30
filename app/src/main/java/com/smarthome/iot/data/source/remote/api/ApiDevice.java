@@ -1,6 +1,6 @@
 package com.smarthome.iot.data.source.remote.api;
 
-import com.smarthome.iot.data.source.remote.response.device.ListDeviceResponse;
+import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
@@ -24,9 +24,13 @@ public interface ApiDevice {
     Observable deviceDetail(@Path("id") String id);
 
     @GET("device/list")
-    Single<ListDeviceResponse> deviceList(@Header("Token") String token, @Query("pagination") String pagination);
+    Single<DeviceResponse> deviceList(@Header("Authorization") String token, @Query("pagination") String pagination);
+
+    @GET("device/list")
+    Single<DeviceResponse> deviceByPosition(@Header("Authorization") String token, @Query("pagination") String pagination,
+                                            @Query("position_id") int positionId);
 
     @POST("device/add")
-    Observable addDevice(@Query("name") String name, @Query("code") String code, @Query("position_id") String position_id);
+    Observable addDevice(@Query("name") String name, @Query("code") String code, @Query("position_id") int positionId);
 
 }

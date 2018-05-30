@@ -3,7 +3,7 @@ package com.smarthome.iot.data.repository;
 import com.smarthome.iot.data.source.DeviceDataSource;
 import com.smarthome.iot.data.source.local.DeviceLocalDataSource;
 import com.smarthome.iot.data.source.remote.DeviceRemoteDataSource;
-import com.smarthome.iot.data.source.remote.response.device.ListDeviceResponse;
+import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
@@ -29,7 +29,12 @@ public class DeviceRepository implements DeviceDataSource.LocalDataSource, Devic
         return instance;
     }
     @Override
-    public Single<ListDeviceResponse> deviceList() {
+    public Single<DeviceResponse> deviceList() {
         return mDeviceRemoteDataSource.deviceList();
+    }
+
+    @Override
+    public Single<DeviceResponse> deviceByPosition(int positionId) {
+        return mDeviceRemoteDataSource.deviceByPosition(positionId);
     }
 }

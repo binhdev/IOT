@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.google.common.base.Preconditions;
 import com.smarthome.iot.data.repository.DeviceRepository;
-import com.smarthome.iot.data.source.remote.response.device.ListDeviceResponse;
+import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
 
 public class DevicePresenter implements DeviceContract.Presenter {
@@ -21,17 +21,18 @@ public class DevicePresenter implements DeviceContract.Presenter {
     }
 
     @Override
-    public void deviceList(String pagination) {
+    public void deviceByPosition(String pagination, int positionId) {
         mView.showLoadingIndicator();
-        mDeviceRepository.deviceList()
+        mDeviceRepository.deviceByPosition(positionId)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
                 .subscribe(deviceListResponse -> handleDeviceListSuccess(deviceListResponse),
                         error -> handleDeviceListFailed(error));
     }
 
-    private void handleDeviceListSuccess(ListDeviceResponse deviceListResponse){
-        mView.setDeviceResponseList(deviceListResponse.getDeviceResponseList());
+    private void handleDeviceListSuccess(DeviceResponse deviceListResponse){
+        if(deviceListResponse.getDeviceResponseList() != null)
+            mView.setDeviceResponseList(deviceListResponse.getDeviceResponseList());
         mView.hideLoadingIndicator();
     }
 

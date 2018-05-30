@@ -1,4 +1,4 @@
-package com.smarthome.iot.utils.widget.dialog;
+package com.smarthome.iot.ui.widget.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.smarthome.iot.R;
+import com.smarthome.iot.data.model.Position;
 
 public class PositionCreateDialog extends Dialog implements View.OnClickListener {
 
@@ -26,7 +27,7 @@ public class PositionCreateDialog extends Dialog implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.form_position);
+        setContentView(R.layout.dialog_position);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -54,7 +55,7 @@ public class PositionCreateDialog extends Dialog implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_close:
-                listener.onCacel();
+                listener.onCancel();
                 break;
             case R.id.btn_save:
                 actionOk();
@@ -64,13 +65,14 @@ public class PositionCreateDialog extends Dialog implements View.OnClickListener
     }
 
     private void actionOk(){
-        String name = editPositionName.getText().toString();
-        String description = editPositionDescription.getText().toString();
-        listener.onOkay(name, description);
+        Position position = new Position();
+        position.setName(editPositionName.getText().toString());
+        position.setName(editPositionDescription.getText().toString());
+        listener.onOkay(position);
     }
     public interface PositionCreateDialogListener{
-        void onOkay(String name, String description);
-        void onCacel();
+        void onOkay(Position position);
+        void onCancel();
     }
 
     PositionCreateDialogListener listener;

@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.google.common.base.Preconditions;
 import com.smarthome.iot.data.repository.PositionRepository;
-import com.smarthome.iot.data.source.remote.response.position.ListPositionResponse;
+import com.smarthome.iot.data.source.remote.response.position.PositionResponse;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
 
 public class PositionPresenter implements PositionContract.Presenter {
@@ -38,14 +38,14 @@ public class PositionPresenter implements PositionContract.Presenter {
     @Override
     public void positionList() {
         mView.showLoadingIndicator();
-        mPositionRepository.positionList()
+        mPositionRepository.positionTreeStructure()
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
                 .subscribe(positionListResponse -> handlePositionListSuccess(positionListResponse),
                         error -> handlePositionListFailed(error));
     }
 
-    private void handlePositionListSuccess(ListPositionResponse positionListResponse){
+    private void handlePositionListSuccess(PositionResponse positionListResponse){
         mView.setPositionList(positionListResponse.getPositionList());
         mView.hideLoadingIndicator();
     }

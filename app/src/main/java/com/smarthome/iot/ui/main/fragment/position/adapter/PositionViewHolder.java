@@ -1,7 +1,8 @@
 package com.smarthome.iot.ui.main.fragment.position.adapter;
 
+import android.app.Activity;
 import android.content.Context;
-import android.view.ContextThemeWrapper;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -13,8 +14,12 @@ import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.repository.PositionRepository;
 import com.smarthome.iot.data.source.local.PositionLocalDataSource;
 import com.smarthome.iot.data.source.remote.PositionRemoteDataSource;
+import com.smarthome.iot.ui.device.DeviceActivity;
+import com.smarthome.iot.ui.widget.dialog.PositionEditDialog;
+import com.smarthome.iot.utils.AppConstants;
+import com.smarthome.iot.utils.navigator.Navigator;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
-import com.smarthome.iot.utils.widget.dialog.PositionCreateDialog;
+import com.smarthome.iot.ui.widget.dialog.PositionCreateDialog;
 import com.unnamed.b.atv.model.TreeNode;
 
 public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionViewHolder.IconTreeItem> implements PositionHolderContract.View {
@@ -34,33 +39,22 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
     @Override
     public View createNodeView(final TreeNode node, IconTreeItem value) {
         final LayoutInflater inflater = LayoutInflater.from(context);
-        final View view = inflater.inflate(R.layout.layout_icon_node, null, false);
+        final View view = inflater.inflate(R.layout.item_position, null, false);
         tvValue = view.findViewById(R.id.node_value);
         tvValue.setText(value.text);
         arrowView = view.findViewById(R.id.arrow_icon);
-
-        view.findViewById(R.id.arrow_icon).setOnClickListener(v -> {
-            tView.toggleNode(node);
-        });
-
-        view.findViewById(R.id.icon).setOnClickListener(v -> {
-            tView.toggleNode(node);
-        });
 
         view.findViewById(R.id.btn_add).setOnClickListener(v -> {
             PositionCreateDialog positionCreateDialog = new PositionCreateDialog(context);
             positionCreateDialog.setListener(new PositionCreateDialog.PositionCreateDialogListener() {
                 @Override
-                public void onOkay(String name, String description) {
-                    Position position = new Position();
-                    position.setName(name);
-                    position.setDescription(description);
+                public void onOkay(Position position) {
                     position.setParentId(value.mPosition.getId());
                     mPresenter.createPosition(position);
                 }
 
                 @Override
-                public void onCacel() {
+                public void onCancel() {
 
                 }
             });
@@ -68,10 +62,42 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
             positionCreateDialog.show();
         });
 
+        view.findViewById(R.id.btn_edit).setOnClickListener(v -> {
+            PositionEditDialog positionEditDialog = new PositionEditDialog(context, value.mPosition);
+            positionEditDialog.setListener(new PositionEditDialog.PositionEditDialogListener() {
+                @Override
+                public void onOkay(Position position) {
+                    mPresenter.editPosition(position);
+                }
 
+                @Override
+                public void onCancel() {
+
+                }
+            });
+
+            positionEditDialog.show();
+        });
+
+        view.findViewById(R.id.btn_delete).setOnClickListener(v -> {
+            int[] ids = new int[1];
+            ids[0] = value.mPosition.getId();
+            mPresenter.deletePosition(ids);
+        });
+
+        view.findViewById(R.id.btn_open).setOnClickListener(view1 -> {
+            Navigator navigator = new Navigator((Activity)context);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(AppConstants.POSITION_OBJECT, value.mPosition);
+            navigator.startActivity(DeviceActivity.class, bundle);
+        });
+
+        view.findViewById(R.id.position_wrapper).setOnClickListener(view1 -> {
+            tView.toggleNode(node);
+        });
         //if My computer
         if (node.getLevel() == 1) {
-//            view.findViewById(R.id.btn_delete).setVisibility(View.GONE);
+            view.findViewById(R.id.btn_open).setVisibility(View.GONE);
         }
 
         return view;
@@ -95,8 +121,13 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
     }
 
     @Override
-    public void updatePositionList() {
+    public void editPositionSuccess() {
+        Toast.makeText(context, "Edit Position Success", Toast.LENGTH_LONG).show();
+    }
 
+    @Override
+    public void editPositionFailed() {
+        Toast.makeText(context, "Edit Position Failed", Toast.LENGTH_LONG).show();
     }
 
     @Override

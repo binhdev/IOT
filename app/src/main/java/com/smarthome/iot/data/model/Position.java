@@ -35,6 +35,14 @@ public class Position implements Serializable {
     @Expose
     private List<Position> child;
 
+    @SerializedName("code")
+    @Expose
+    private String code;
+
+    @SerializedName("type")
+    @Expose
+    private Integer type;
+
     public Integer getId() {
         return id;
     }
@@ -85,5 +93,21 @@ public class Position implements Serializable {
 
     public List<Position> getChild() {
         return child;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

@@ -23,8 +23,8 @@ public class PositionHolderPresenter implements PositionHolderContract.Presenter
     }
 
     @Override
-    public void deletePosition(Position position) {
-        mPositionRepository.deletePosition(position)
+    public void deletePosition(int[] ids) {
+        mPositionRepository.deletePosition(ids)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
                 .subscribe((s) -> handleDeletePositionSuccess(),
@@ -40,12 +40,29 @@ public class PositionHolderPresenter implements PositionHolderContract.Presenter
                         error -> handleCreatePositionFailed());
     }
 
+    @Override
+    public void editPosition(Position position) {
+        mPositionRepository.editPosition(position)
+                .subscribeOn(mSchedulerProvider.io())
+                .observeOn(mSchedulerProvider.ui())
+                .subscribe((s) -> handleEditPositionSuccess(),
+                        error -> handleEditPositionFailed());
+    }
+
     private void handleCreatePositionSuccess(){
         mView.createPositionSuccess();
     }
 
     private void handleCreatePositionFailed(){
         mView.createPositionFailed();
+    }
+
+    private void handleEditPositionSuccess(){
+        mView.editPositionSuccess();
+    }
+
+    private void handleEditPositionFailed(){
+        mView.editPositionFailed();
     }
 
     private void handleDeletePositionSuccess(){

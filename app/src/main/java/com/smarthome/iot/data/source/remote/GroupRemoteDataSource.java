@@ -6,7 +6,9 @@ import com.smarthome.iot.data.source.GroupDataSource;
 import com.smarthome.iot.data.source.remote.api.ApiGroup;
 import com.smarthome.iot.data.source.remote.response.group.ListGroupResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
+import com.smarthome.iot.utils.AppConstants;
 import com.smarthome.iot.utils.AppPrefs;
+import com.smarthome.iot.utils.helper.StringHelper;
 
 import io.reactivex.Single;
 
@@ -32,6 +34,6 @@ public class GroupRemoteDataSource implements GroupDataSource.RemoteDataSource {
 
     @Override
     public Single<ListGroupResponse> groupList() {
-        return mApiGroup.groupList(AppPrefs.getInstance(context).getApiToken());
+        return mApiGroup.groupList(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()));
     }
 }

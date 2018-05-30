@@ -4,9 +4,11 @@ import android.content.Context;
 
 import com.smarthome.iot.data.source.DeviceDataSource;
 import com.smarthome.iot.data.source.remote.api.ApiDevice;
-import com.smarthome.iot.data.source.remote.response.device.ListDeviceResponse;
+import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
+import com.smarthome.iot.utils.AppConstants;
 import com.smarthome.iot.utils.AppPrefs;
+import com.smarthome.iot.utils.helper.StringHelper;
 
 import io.reactivex.Single;
 
@@ -30,7 +32,13 @@ public class DeviceRemoteDataSource implements DeviceDataSource.RemoteDataSource
         return instance;
     }
     @Override
-    public Single<ListDeviceResponse> deviceList() {
-        return mApiDevice.deviceList(AppPrefs.getInstance(context).getApiToken(),"false");
+    public Single<DeviceResponse> deviceList() {
+        return mApiDevice.deviceList(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),"false");
+    }
+
+    @Override
+    public Single<DeviceResponse> deviceByPosition(int positionId) {
+        return mApiDevice.deviceByPosition(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken())
+                ,"false", positionId);
     }
 }

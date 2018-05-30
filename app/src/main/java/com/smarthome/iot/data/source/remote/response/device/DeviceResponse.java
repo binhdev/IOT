@@ -7,7 +7,7 @@ import com.smarthome.iot.data.source.remote.response.BaseResponse;
 
 import java.util.List;
 
-public class ListDeviceResponse extends BaseResponse {
+public class DeviceResponse extends BaseResponse {
 
     @SerializedName("data")
     @Expose

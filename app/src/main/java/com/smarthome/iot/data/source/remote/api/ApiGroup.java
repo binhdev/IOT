@@ -23,7 +23,7 @@ public interface ApiGroup {
 
     @Headers({"Content-Type:application/json"})
     @GET("group/list")
-    Single<ListGroupResponse> groupList(@Header("Token") String token);
+    Single<ListGroupResponse> groupList(@Header("Authorization") String token);
 
     @DELETE("group/delete/{id}")
     Observable deleteGroup(@Path("id") String id);

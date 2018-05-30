@@ -5,19 +5,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SimpleSwipeListener;
 import com.daimajia.swipe.SwipeLayout;
 import com.smarthome.iot.R;
-import com.smarthome.iot.data.source.remote.response.device.ListDeviceResponse;
+import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 
 import java.util.List;
 
 public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder> {
 
-    private List<ListDeviceResponse.Data> dataList;
+    private List<DeviceResponse.Data> dataList;
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -33,7 +32,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         }
     }
 
-    public DeviceAdapter(List<ListDeviceResponse.Data> list){
+    public DeviceAdapter(List<DeviceResponse.Data> list){
         dataList = list;
     }
 
@@ -41,13 +40,13 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
     @Override
     public DeviceAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.device_item, parent, false);
+                .inflate(R.layout.item_device, parent, false);
         return new DeviceAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ListDeviceResponse.Data deviceResponse = dataList.get(position);
+        DeviceResponse.Data deviceResponse = dataList.get(position);
         holder.mSwipeLayout.setShowMode(SwipeLayout.ShowMode.LayDown);
         holder.mSwipeLayout.addSwipeListener(new SimpleSwipeListener(){
             @Override
@@ -64,12 +63,12 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.ViewHolder
         return dataList.size();
     }
 
-    public void add(List<ListDeviceResponse.Data> list){
+    public void add(List<DeviceResponse.Data> list){
         dataList.addAll(list);
         notifyDataSetChanged();
     }
 
-    public void remove(List<ListDeviceResponse.Data> deviceResponses){
+    public void remove(List<DeviceResponse.Data> deviceResponses){
         int position = dataList.indexOf(deviceResponses);
         dataList.remove(position);
         notifyDataSetChanged();

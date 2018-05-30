@@ -83,13 +83,12 @@ public class PositionFragment extends BaseFragment implements PositionContract.V
         root.addChildren(computerRoot);
 
         tView = new AndroidTreeView(getActivity(), root);
-        tView.setDefaultAnimation(true);
         tView.setDefaultContainerStyle(R.style.TreeNodeStyleCustom);
         tView.setDefaultViewHolder(PositionViewHolder.class);
         tView.setDefaultNodeClickListener(nodeClickListener);
         tView.setDefaultNodeLongClickListener(nodeLongClickListener);
-        tView.setUseAutoToggle(false);
-        tView.expandLevel(3);
+        tView.setUseAutoToggle(true);
+        tView.expandLevel(2);
 
         for(int i = 0; i < positionList.size(); i++){
             computerRoot.addChild(makeTree(positionList.get(i)));
@@ -153,9 +152,7 @@ public class PositionFragment extends BaseFragment implements PositionContract.V
     private TreeNode.TreeNodeClickListener nodeClickListener = new TreeNode.TreeNodeClickListener() {
         @Override
         public void onClick(TreeNode node, Object value) {
-            PositionViewHolder.IconTreeItem item = (PositionViewHolder.IconTreeItem) value;
-            Navigator navigator = new Navigator((Activity)getContext());
-            navigator.startActivity(DeviceActivity.class);
+            tView.toggleNode(node);
         }
     };
 
