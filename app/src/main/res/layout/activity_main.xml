@@ -6,10 +6,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundPrimary"
     tools:context=".ui.main.MainActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <FrameLayout
         android:id="@+id/frame_layout"
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/navigation"
@@ -22,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorWhite"
         app:itemIconTint="@color/nav_item_state_list"
         app:itemTextColor="@color/nav_item_state_list"
         app:menu="@menu/bottom_navigation_items"/>

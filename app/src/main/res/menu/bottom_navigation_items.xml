@@ -9,6 +9,10 @@
         android:icon="@drawable/ic_group"
         android:title="@string/item_group"/>
     <item
+        android:id="@+id/action_alldevice"
+        android:icon="@drawable/ic_device"
+        android:title="@string/item_alldevice"/>
+    <item
         android:id="@+id/action_alarm"
         android:icon="@drawable/ic_notification"
         android:title="@string/item_alarm"/>

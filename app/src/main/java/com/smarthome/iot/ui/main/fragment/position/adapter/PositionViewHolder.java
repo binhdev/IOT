@@ -68,13 +68,10 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
             positionCreateDialog.show();
         });
 
-        view.findViewById(R.id.btn_delete).setOnClickListener(v -> {
-            mPresenter.deletePosition(value.mPosition);
-        });
 
         //if My computer
         if (node.getLevel() == 1) {
-            view.findViewById(R.id.btn_delete).setVisibility(View.GONE);
+//            view.findViewById(R.id.btn_delete).setVisibility(View.GONE);
         }
 
         return view;
@@ -104,6 +101,7 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
 
     @Override
     public void deletePositionSuccess() {
+        tView.expandLevel(2);
         Toast.makeText(context, "Delete Position Success", Toast.LENGTH_LONG).show();
     }
 
@@ -115,7 +113,7 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
     @Override
     public void createPositionSuccess() {
         Toast.makeText(context, "Success create position", Toast.LENGTH_LONG).show();
-        getTreeView().expandAll();
+        tView.expandAll();
     }
 
     @Override

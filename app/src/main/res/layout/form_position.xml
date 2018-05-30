@@ -30,7 +30,7 @@
             android:id="@+id/title"
             android:text="@string/add_new_position"
             android:textSize="20sp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorBaseText"
             android:textStyle="bold"
             android:gravity="center_horizontal"
             android:padding="5dp"
@@ -45,7 +45,7 @@
             android:padding="5dp">
             <TextView
                 android:text="@string/position_name"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorBaseText"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_width="0dp"
@@ -70,7 +70,7 @@
             android:padding="5dp">
             <TextView
                 android:text="@string/position_descrition"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorBaseText"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_width="0dp"

@@ -9,14 +9,7 @@
     tools:context=".ui.main.MainActivity">
 
     <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <include
-        android:id="@+id/devices"
-        android:layout_below="@+id/toolbar"
+        android:id="@+id/all_device"
         layout="@layout/layout_device"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

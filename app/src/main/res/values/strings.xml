@@ -13,8 +13,10 @@
 
     <string name="item_dashboard">Position</string>
     <string name="item_group">Group</string>
+    <string name="item_alldevice">All Device</string>
     <string name="item_alarm">Alarm</string>
     <string name="item_notification">Notification</string>
+    <string name="item_setting">Setting</string>
 
     <string name="ic_folder">&#xe09d;</string>
     <string name="ic_keyboard_arrow_down">&#xe0c5;</string>
@@ -30,6 +32,7 @@
     <string name="ic_create">&#xe056;</string>
     <string name="ic_add_box">&#xe008;</string>
     <string name="ic_hotel">&#xe0b9;</string>
+    <string name="ic_location">&#xe0d9;</string>
 
     <!--Dialog-->
     <string name="trash">Trash</string>

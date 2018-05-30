@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#FF6719</color>
+    <color name="colorPrimary">#02A2BC</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorBaseText">#3C3C3C</color>
 
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
@@ -17,10 +18,12 @@
     <color name="colorBackground">#FBE9E7</color>
     <color name="colorLight">#F0F6F5</color>
     <color name="colorHint">#CCCCCC</color>
-    <color name="colorGreen">#4CAF50</color>
+    <color name="colorGreen">#45B749</color>
 
     <color name="transparent">@android:color/transparent</color>
     <color name="backgroundColor">#2D3035</color>
     <color name="backgroundColorPress">#DBDBD3</color>
+
+    <color name="backgroundPrimary">#E9E9E9</color>
 
 </resources>

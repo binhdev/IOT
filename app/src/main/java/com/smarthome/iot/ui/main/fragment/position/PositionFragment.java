@@ -89,6 +89,7 @@ public class PositionFragment extends BaseFragment implements PositionContract.V
         tView.setDefaultNodeClickListener(nodeClickListener);
         tView.setDefaultNodeLongClickListener(nodeLongClickListener);
         tView.setUseAutoToggle(false);
+        tView.expandLevel(3);
 
         for(int i = 0; i < positionList.size(); i++){
             computerRoot.addChild(makeTree(positionList.get(i)));

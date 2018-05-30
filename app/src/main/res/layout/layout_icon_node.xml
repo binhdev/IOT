@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:iconText="@string/ic_keyboard_arrow_right"
-        app:iconColor="@color/colorWhite"
+        app:iconColor="@color/colorBaseText"
         app:iconFont="fonts/material-icon-font.ttf"
         app:iconSize="20sp" />
 
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:iconText="@string/ic_hotel"
-        app:iconColor="@color/colorWhite"
+        app:iconColor="@color/colorBaseText"
         app:iconFont="fonts/material-icon-font.ttf"
         app:iconSize="24dp" />
 
@@ -37,6 +37,7 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/icon"
         android:layout_toLeftOf="@+id/buttonsContainer"
+        android:textColor="@color/colorBaseText"
         android:id="@+id/node_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -57,19 +58,14 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             app:iconSize="24dp"
-            app:iconColor="#99cc00"
+            app:iconColor="@color/colorBaseText"
             app:iconFont="fonts/material-icon-font.ttf"
             app:iconText="@string/ic_add_box" />
 
 
-        <com.github.johnkil.print.PrintView
-            android:padding="5dp"
-            android:id="@+id/btn_delete"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:iconSize="24dp"
-            app:iconColor="#ff4444"
-            app:iconFont="fonts/material-icon-font.ttf"
-            app:iconText="@string/ic_delete" />
+            android:text="Open"/>
     </LinearLayout>
 </RelativeLayout>
