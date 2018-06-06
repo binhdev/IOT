@@ -3,7 +3,6 @@ package com.smarthome.iot.ui.main.fragment.group;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +18,7 @@ import com.smarthome.iot.data.source.local.GroupLocalDataSource;
 import com.smarthome.iot.data.source.remote.GroupRemoteDataSource;
 import com.smarthome.iot.ui.main.fragment.BaseFragment;
 import com.smarthome.iot.ui.main.fragment.group.adapter.GroupAdapter;
+import com.smarthome.iot.ui.widget.dialog.GroupDialog;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
@@ -61,6 +61,23 @@ public class GroupFragment extends BaseFragment implements GroupContract.View {
         rcGroupListView.setAdapter(mAdapter);
         rcGroupListView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
+        view.findViewById(R.id.fab).setOnClickListener(v -> {
+            GroupDialog addGroupDialog = new GroupDialog(getContext(), null);
+            addGroupDialog.setListener(new GroupDialog.GroupDialogListener() {
+                @Override
+                public void onOkay(Group group) {
+                    mPresenter.addGroup(group);
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+            });
+
+            addGroupDialog.show();
+        });
+
         initData();
     }
 
@@ -69,7 +86,7 @@ public class GroupFragment extends BaseFragment implements GroupContract.View {
                 GroupRemoteDataSource.getInstance(getContext()));
         mPresenter = new GroupPresenter(getContext(), groupRepository, SchedulerProvider.getInstance());
         mPresenter.setView(this);
-        mPresenter.groupList();
+        mPresenter.allGroup();
     }
 
 
@@ -97,5 +114,34 @@ public class GroupFragment extends BaseFragment implements GroupContract.View {
     @Override
     public void setGroupListView(List<Group> groupList) {
         mAdapter.add(groupList);
+    }
+
+    @Override
+    public void editGroupSuccess() {
+    }
+
+    @Override
+    public void editGroupFailed() {
+
+    }
+
+    @Override
+    public void deleteGroupSuccess() {
+
+    }
+
+    @Override
+    public void deleteGroupFailed() {
+
+    }
+
+    @Override
+    public void createGroupSuccess() {
+
+    }
+
+    @Override
+    public void createGroupFailed() {
+
     }
 }

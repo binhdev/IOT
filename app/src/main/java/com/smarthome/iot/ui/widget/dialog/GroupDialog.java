@@ -12,22 +12,25 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.smarthome.iot.R;
-import com.smarthome.iot.data.model.Position;
+import com.smarthome.iot.data.model.Group;
 
-public class PositionCreateDialog extends Dialog implements View.OnClickListener {
+public class GroupDialog extends Dialog implements View.OnClickListener {
 
-    private EditText editPositionName;
-    private EditText editPositionDescription;
+    private EditText editGroupName;
+    private EditText editGroupDescription;
+    private Group mGroup;
 
-    public PositionCreateDialog(@NonNull Context context) {
+    public GroupDialog(@NonNull Context context, Group group) {
         super(context);
+        if(group != null)
+            this.mGroup = group;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.dialog_position);
+        setContentView(R.layout.dialog_group);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -37,18 +40,30 @@ public class PositionCreateDialog extends Dialog implements View.OnClickListener
         getWindow().setAttributes(lp);
         getWindow().setGravity(Gravity.CENTER);
 
+        initGUI();
+    }
 
+    private void initGUI(){
         Button btnClose = findViewById(R.id.btn_close);
         btnClose.setOnClickListener(this);
 
         Button btnSave = findViewById(R.id.btn_save);
         btnSave.setOnClickListener(this);
 
-        editPositionName = findViewById(R.id.ed_postion_name);
-        editPositionDescription = findViewById(R.id.ed_position_description);
+        editGroupName = findViewById(R.id.ed_group_name);
+        editGroupDescription = findViewById(R.id.ed_group_description);
+
+        /**
+         * mGroupp is null if add dialog
+         * mGroup is not null if edit dialog
+         */
+        if(mGroup != null) {
+            editGroupName.setText(mGroup.getName());
+            editGroupDescription.setText(mGroup.getDescription());
+        }
     }
 
-    public void setListener(PositionCreateDialogListener listener){
+    public void setListener(GroupDialog.GroupDialogListener listener){
         this.listener = listener;
     }
     @Override
@@ -65,15 +80,21 @@ public class PositionCreateDialog extends Dialog implements View.OnClickListener
     }
 
     private void actionOk(){
-        Position position = new Position();
-        position.setName(editPositionName.getText().toString());
-        position.setName(editPositionDescription.getText().toString());
-        listener.onOkay(position);
+        if(mGroup != null) {
+            mGroup.setName(editGroupName.getText().toString());
+            mGroup.setDescription(editGroupDescription.getText().toString());
+            listener.onOkay(mGroup);
+        }else{
+            Group group = new Group();
+            group.setName(editGroupName.getText().toString());
+            group.setDescription(editGroupDescription.getText().toString());
+            listener.onOkay(group);
+        }
     }
-    public interface PositionCreateDialogListener{
-        void onOkay(Position position);
+    public interface GroupDialogListener{
+        void onOkay(Group group);
         void onCancel();
     }
 
-    PositionCreateDialogListener listener;
+    GroupDialog.GroupDialogListener listener;
 }

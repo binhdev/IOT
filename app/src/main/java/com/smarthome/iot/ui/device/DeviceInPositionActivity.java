@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.smarthome.iot.R;
+import com.smarthome.iot.data.model.Device;
 import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.repository.DeviceRepository;
 import com.smarthome.iot.data.source.local.DeviceLocalDataSource;
@@ -23,10 +24,10 @@ import com.smarthome.iot.utils.rx.SchedulerProvider;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeviceActivity extends BaseActivity implements DeviceContract.View {
+public class DeviceInPositionActivity extends BaseActivity implements DeviceInPositionContract.View {
 
-    private DeviceContract.Presenter mPresenter;
-    private List<DeviceResponse.Data> dataList = new ArrayList<>();
+    private DeviceInPositionContract.Presenter mPresenter;
+    private List<Device> deviceList = new ArrayList<>();
     private RecyclerView rcDeviceResponseListView;
     private DeviceAdapter mAdapter;
     private Position mPosition;
@@ -44,14 +45,14 @@ public class DeviceActivity extends BaseActivity implements DeviceContract.View 
     private void initData(){
         DeviceRepository deviceRepository = DeviceRepository.getInstance(DeviceLocalDataSource.getInstance(),
                 DeviceRemoteDataSource.getInstance(this));
-        mPresenter = new DevicePresenter(this, deviceRepository, SchedulerProvider.getInstance());
+        mPresenter = new DeviceInPositionPresenter(this, deviceRepository, SchedulerProvider.getInstance());
         mPresenter.setView(this);
         mPresenter.deviceByPosition("false", this.mPosition.getId());
     }
 
     private void initGUI(){
         rcDeviceResponseListView = findViewById(R.id.rc_device_list);
-        mAdapter = new DeviceAdapter(dataList);
+        mAdapter = new DeviceAdapter(deviceList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         rcDeviceResponseListView.setLayoutManager(mLayoutManager);
         rcDeviceResponseListView.setItemAnimator(new DefaultItemAnimator());
@@ -83,10 +84,10 @@ public class DeviceActivity extends BaseActivity implements DeviceContract.View 
     }
 
     @Override
-    public void setDeviceResponseList(List<DeviceResponse.Data> dataList) {
+    public void setDeviceToView(List<Device> list) {
         Gson gson = new Gson();
-        Log.i("list device", gson.toJson(dataList));
-        mAdapter.add(dataList);
+        Log.i("list device", gson.toJson(list));
+        mAdapter.add(list);
     }
 
     @Override

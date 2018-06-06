@@ -3,8 +3,9 @@ import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Device extends BaseModel implements Serializable
+public class Device implements Serializable
 {
+
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -17,21 +18,29 @@ public class Device extends BaseModel implements Serializable
     @Expose
     private String code;
 
-    @SerializedName("seriala_number_code")
+    @SerializedName("position_id")
     @Expose
-    private String serialaNumberCode;
+    private Integer positionId;
+
+    @SerializedName("position_name")
+    @Expose
+    private String positionName;
 
     @SerializedName("group_id")
     @Expose
-    private Object groupId;
+    private int groupId;
 
     @SerializedName("group_name")
     @Expose
-    private Object groupName;
+    private String groupName;
 
     @SerializedName("device_type_name")
     @Expose
     private String deviceTypeName;
+
+    @SerializedName("serial_number_id")
+    @Expose
+    private Integer serialNumberId;
 
     @SerializedName("has_io_input")
     @Expose
@@ -41,7 +50,14 @@ public class Device extends BaseModel implements Serializable
     @Expose
     private Boolean hasIoOutput;
 
-    private final static long serialVersionUID = -2833965300949966005L;
+    @SerializedName("o_digital")
+    @Expose
+    private Object oDigital;
+
+    @SerializedName("serial_number_code")
+    @Expose
+    private String serialNumberCode;
+    private final static long serialVersionUID = -6116019743933638232L;
 
     public Integer getId() {
         return id;
@@ -67,27 +83,35 @@ public class Device extends BaseModel implements Serializable
         this.code = code;
     }
 
-    public String getSerialaNumberCode() {
-        return serialaNumberCode;
+    public Integer getPositionId() {
+        return positionId;
     }
 
-    public void setSerialaNumberCode(String serialaNumberCode) {
-        this.serialaNumberCode = serialaNumberCode;
+    public void setPositionId(Integer positionId) {
+        this.positionId = positionId;
     }
 
-    public Object getGroupId() {
+    public String getPositionName() {
+        return positionName;
+    }
+
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
+    }
+
+    public int getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(Object groupId) {
+    public void setGroupId(int groupId) {
         this.groupId = groupId;
     }
 
-    public Object getGroupName() {
+    public String getGroupName() {
         return groupName;
     }
 
-    public void setGroupName(Object groupName) {
+    public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
 
@@ -97,6 +121,14 @@ public class Device extends BaseModel implements Serializable
 
     public void setDeviceTypeName(String deviceTypeName) {
         this.deviceTypeName = deviceTypeName;
+    }
+
+    public Integer getSerialNumberId() {
+        return serialNumberId;
+    }
+
+    public void setSerialNumberId(Integer serialNumberId) {
+        this.serialNumberId = serialNumberId;
     }
 
     public Boolean getHasIoInput() {
@@ -114,4 +146,21 @@ public class Device extends BaseModel implements Serializable
     public void setHasIoOutput(Boolean hasIoOutput) {
         this.hasIoOutput = hasIoOutput;
     }
+
+    public Object getODigital() {
+        return oDigital;
+    }
+
+    public void setODigital(Object oDigital) {
+        this.oDigital = oDigital;
+    }
+
+    public String getSerialNumberCode() {
+        return serialNumberCode;
+    }
+
+    public void setSerialNumberCode(String serialNumberCode) {
+        this.serialNumberCode = serialNumberCode;
+    }
+
 }

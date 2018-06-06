@@ -13,13 +13,20 @@
             android:id="@+id/header"
             layout="@layout/partial_header"
             android:layout_width="match_parent"
-            android:layout_height="128dp"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rc_device_list"
-            android:scrollbars="vertical"
+            android:layout_height="200dp"/>
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"
+            android:padding="@dimen/tab_margin"
+            android:background="@color/backgroundPrimary">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rc_device_list"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorWhite"/>
+        </RelativeLayout>
+
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

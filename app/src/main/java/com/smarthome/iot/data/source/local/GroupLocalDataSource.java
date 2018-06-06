@@ -18,15 +18,4 @@ public class GroupLocalDataSource implements GroupDataSource.LocalDataSource {
         }
         return instance;
     }
-
-
-    @Override
-    public Observable insertGroup(User user) {
-        return null;
-    }
-
-    @Override
-    public Observable deleteGroup(User user) {
-        return null;
-    }
 }

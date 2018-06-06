@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.device.DeviceActivity"></activity>
+        <activity android:name=".ui.device.DeviceInPositionActivity" />
+        <activity android:name=".ui.device.DeviceInGroupActivity"></activity>
     </application>
 
 </manifest>

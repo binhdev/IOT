@@ -9,6 +9,7 @@
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="white_trans">#99FFFFFF</color>
+    <color name="colorSwipe">#e1eef6</color>
 
     <color name="colorBlue">#127DB7</color>
     <color name="colorRed">#9D1018</color>

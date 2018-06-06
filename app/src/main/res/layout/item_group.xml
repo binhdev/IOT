@@ -13,12 +13,13 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#2D3035"
+            android:background="@color/colorSwipe"
             android:tag="Bottom3"
             android:weightSum="10">
             <TextView
                 android:id="@+id/btn_edit"
                 android:text="Edit"
+                android:textSize="13sp"
                 android:layout_width="72dp"
                 android:layout_height="match_parent"
                 style="@style/row_list_view"
@@ -27,6 +28,7 @@
             <TextView
                 android:id="@+id/btn_delete"
                 android:text="Delete"
+                android:textSize="13sp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@color/colorRed"
@@ -55,7 +57,7 @@
                 android:layout_centerVertical="true">
                 <TextView
                     android:id="@+id/tv_name"
-                    android:textStyle="bold"
+                    android:textSize="13sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorBaseText"/>
@@ -63,6 +65,7 @@
                 <TextView
                     android:id="@+id/tv_description"
                     android:textStyle="italic"
+                    android:textSize="13sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorBaseText"

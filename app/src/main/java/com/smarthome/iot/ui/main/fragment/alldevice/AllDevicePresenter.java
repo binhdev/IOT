@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.common.base.Preconditions;
+import com.smarthome.iot.data.model.Device;
 import com.smarthome.iot.data.repository.DeviceRepository;
 import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
@@ -30,8 +31,13 @@ public class AllDevicePresenter  implements AllDeviceContract.Presenter {
                         error -> handleDeviceListFailed(error));
     }
 
+    @Override
+    public void addDevice(Device device) {
+
+    }
+
     private void handleDeviceListSuccess(DeviceResponse deviceListResponse){
-        mView.setDeviceResponseList(deviceListResponse.getDeviceResponseList());
+        mView.setDeviceResponseList(deviceListResponse.getDeviceList());
         mView.hideLoadingIndicator();
     }
 

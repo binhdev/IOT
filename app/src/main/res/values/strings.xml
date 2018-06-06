@@ -3,13 +3,24 @@
     <string name="title_activity_login">LoginActivity</string>
 
     <!--Position-->
-    <string name="add_position">Thêm mới vị trí</string>
-    <string name="position_name">Tên:</string>
-    <string name="position_descrition">Mô tả:</string>
-    <string name="position_parent">Vị trí cha:</string>
+    <string name="add_new_position">Thêm mới vị trí</string>
     <string name="hint_position_name">Nhập tên vị trí</string>
     <string name="hint_position_description">Nhập mô tả vị trí</string>
-    <string name="add_new_position">Thêm mới vị trí</string>
+    <string name="position_parent">Vị trí cha:</string>
+
+    <!--Group-->
+    <string name="add_new_group">Thêm mới nhóm</string>
+    <string name="hint_group_name">Nhập tên nhóm</string>
+    <string name="hint_group_description">Nhập mô tả nhóm</string>
+
+    <!--Device-->
+    <string name="add_new_device">Thêm mới thiết bị</string>
+    <string name="hint_device_name">Nhập tên thiết bị</string>
+    <string name="hint_device_code">Nhập mã thiết bị</string>
+    <string name="position">Vị trí</string>
+
+    <!--DeviceConfig-->
+    <string name="select_config">Chọn mã thiết bị</string>
 
     <string name="item_dashboard">Position</string>
     <string name="item_group">Group</string>

@@ -2,8 +2,11 @@ package com.smarthome.iot.data.source.remote;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.smarthome.iot.data.model.Device;
 import com.smarthome.iot.data.source.DeviceDataSource;
 import com.smarthome.iot.data.source.remote.api.ApiDevice;
+import com.smarthome.iot.data.source.remote.response.BaseResponse;
 import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
 import com.smarthome.iot.utils.AppConstants;
@@ -20,8 +23,8 @@ public class DeviceRemoteDataSource implements DeviceDataSource.RemoteDataSource
 
     private Context context;
 
-    public DeviceRemoteDataSource(ApiDevice mApiDevice){
-        this.mApiDevice = mApiDevice;
+    public DeviceRemoteDataSource(ApiDevice apiDevice){
+        this.mApiDevice = apiDevice;
     }
 
     public static synchronized DeviceRemoteDataSource getInstance(Context context) {
@@ -40,5 +43,25 @@ public class DeviceRemoteDataSource implements DeviceDataSource.RemoteDataSource
     public Single<DeviceResponse> deviceByPosition(int positionId) {
         return mApiDevice.deviceByPosition(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken())
                 ,"false", positionId);
+    }
+
+    @Override
+    public Single<BaseResponse> addDevice(Device device) {
+        return mApiDevice.addDevice(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),
+                device.getName(), device.getCode(), device.getPositionId());
+    }
+
+    @Override
+    public Single<BaseResponse> editDevice(Device device) {
+        return mApiDevice.editDevice(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),
+                device.getId(), device.getName(), device.getPositionId());
+    }
+
+    @Override
+    public Single<BaseResponse> deleteDevice(int[] arrayId) {
+        Gson gson = new Gson();
+        String id = gson.toJson(arrayId);
+        return mApiDevice.deleteGroup(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),
+                id);
     }
 }

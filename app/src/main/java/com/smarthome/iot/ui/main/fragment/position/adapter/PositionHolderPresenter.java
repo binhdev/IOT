@@ -23,21 +23,12 @@ public class PositionHolderPresenter implements PositionHolderContract.Presenter
     }
 
     @Override
-    public void deletePosition(int[] ids) {
-        mPositionRepository.deletePosition(ids)
-                .subscribeOn(mSchedulerProvider.io())
-                .observeOn(mSchedulerProvider.ui())
-                .subscribe((s) -> handleDeletePositionSuccess(),
-                        error -> handleDeletePositionFailed());
-    }
-
-    @Override
-    public void createPosition(Position position) {
+    public void addPosition(Position position) {
         mPositionRepository.createPosition(position)
                 .subscribeOn(mSchedulerProvider.io())
                 .observeOn(mSchedulerProvider.ui())
-                .subscribe((s) -> handleCreatePositionSuccess(),
-                        error -> handleCreatePositionFailed());
+                .subscribe((s) -> handleAddPositionSuccess(),
+                        error -> handleAddPositionFailed());
     }
 
     @Override
@@ -49,11 +40,20 @@ public class PositionHolderPresenter implements PositionHolderContract.Presenter
                         error -> handleEditPositionFailed());
     }
 
-    private void handleCreatePositionSuccess(){
+    @Override
+    public void deletePosition(int[] ids) {
+        mPositionRepository.deletePosition(ids)
+                .subscribeOn(mSchedulerProvider.io())
+                .observeOn(mSchedulerProvider.ui())
+                .subscribe((s) -> handleDeletePositionSuccess(),
+                        error -> handleDeletePositionFailed());
+    }
+
+    private void handleAddPositionSuccess(){
         mView.createPositionSuccess();
     }
 
-    private void handleCreatePositionFailed(){
+    private void handleAddPositionFailed(){
         mView.createPositionFailed();
     }
 

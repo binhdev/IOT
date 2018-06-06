@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PositionEditDialog extends Dialog implements View.OnClickListener {
+public class PositionDialog extends Dialog implements View.OnClickListener {
 
     private Context mContext;
     private EditText editPositionName;
@@ -34,17 +34,18 @@ public class PositionEditDialog extends Dialog implements View.OnClickListener {
     private Position mPosition;
     private List<Position> mPositionList;
 
-    public PositionEditDialog(@NonNull Context context, Position position) {
+    public PositionDialog(@NonNull Context context, Position position) {
         super(context);
         this.mContext = context;
-        this.mPosition = position;
+        if(position != null)
+            this.mPosition = position;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.dialog_position_edit);
+        setContentView(R.layout.dialog_position);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -67,18 +68,23 @@ public class PositionEditDialog extends Dialog implements View.OnClickListener {
         editPositionName = findViewById(R.id.ed_postion_name);
         editPositionDescription = findViewById(R.id.ed_position_description);
         spinnerPositionParent = findViewById(R.id.sp_position_parent);
+        /**
+         * mPosition is not null if dialog edit
+         */
+        if(mPosition != null) {
+            editPositionName.setText(mPosition.getName());
+            editPositionDescription.setText(mPosition.getDescription());
+            spinnerPositionParent.setVisibility(View.VISIBLE);
 
-        editPositionName.setText(mPosition.getName());
-        editPositionDescription.setText(mPosition.getDescription());
-
-        PositionRepository positionRepository = PositionRepository.getInstance(PositionLocalDataSource.getInstance(),
-                PositionRemoteDataSource.getInstance(mContext));
-        SchedulerProvider schedulerProvider = SchedulerProvider.getInstance();
-        positionRepository.allPosition()
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
-                .subscribe(positionListResponse -> handlePositionListSuccess(positionListResponse),
-                        error -> handlePositionListFailed(error));
+            PositionRepository positionRepository = PositionRepository.getInstance(PositionLocalDataSource.getInstance(),
+                    PositionRemoteDataSource.getInstance(mContext));
+            SchedulerProvider schedulerProvider = SchedulerProvider.getInstance();
+            positionRepository.allPosition()
+                    .subscribeOn(schedulerProvider.io())
+                    .observeOn(schedulerProvider.ui())
+                    .subscribe(positionListResponse -> handlePositionListSuccess(positionListResponse),
+                            error -> handlePositionListFailed(error));
+        }
     }
 
     private void handlePositionListSuccess(PositionResponse listPositionResponse){
@@ -118,7 +124,7 @@ public class PositionEditDialog extends Dialog implements View.OnClickListener {
 
     }
 
-    public void setListener(PositionEditDialog.PositionEditDialogListener listener){
+    public void setListener(PositionDialog.PositionDialogListener listener){
         this.listener = listener;
     }
     @Override
@@ -135,15 +141,22 @@ public class PositionEditDialog extends Dialog implements View.OnClickListener {
     }
 
     private void actionOk(){
-        mPosition.setName(editPositionName.getText().toString());
-        mPosition.setDescription(editPositionDescription.getText().toString());
-        mPosition.setParentId(mPositionList.get(spinnerPositionParent.getSelectedItemPosition()).getId());
-        listener.onOkay(mPosition);
+        if(mPosition != null) {
+            mPosition.setName(editPositionName.getText().toString());
+            mPosition.setDescription(editPositionDescription.getText().toString());
+            mPosition.setParentId(mPositionList.get(spinnerPositionParent.getSelectedItemPosition()).getId());
+            listener.onOkay(mPosition);
+        }else{
+            Position position = new Position();
+            position.setName(editPositionName.getText().toString());
+            position.setDescription(editPositionDescription.getText().toString());
+            listener.onOkay(position);
+        }
     }
-    public interface PositionEditDialogListener{
+    public interface PositionDialogListener{
         void onOkay(Position position);
         void onCancel();
     }
 
-    PositionEditDialog.PositionEditDialogListener listener;
+    PositionDialog.PositionDialogListener listener;
 }

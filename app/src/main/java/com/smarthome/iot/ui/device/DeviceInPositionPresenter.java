@@ -8,13 +8,13 @@ import com.smarthome.iot.data.repository.DeviceRepository;
 import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
 
-public class DevicePresenter implements DeviceContract.Presenter {
-    private DeviceContract.View mView;
+public class DeviceInPositionPresenter implements DeviceInPositionContract.Presenter {
+    private DeviceInPositionContract.View mView;
     private DeviceRepository mDeviceRepository;
     private BaseSchedulerProvider mSchedulerProvider;
     private Context context;
 
-    public DevicePresenter(Context context, DeviceRepository deviceRepository, BaseSchedulerProvider schedulerProvider){
+    public DeviceInPositionPresenter(Context context, DeviceRepository deviceRepository, BaseSchedulerProvider schedulerProvider){
         this.context = Preconditions.checkNotNull(context);
         mDeviceRepository = Preconditions.checkNotNull(deviceRepository);
         mSchedulerProvider = Preconditions.checkNotNull(schedulerProvider);
@@ -31,8 +31,8 @@ public class DevicePresenter implements DeviceContract.Presenter {
     }
 
     private void handleDeviceListSuccess(DeviceResponse deviceListResponse){
-        if(deviceListResponse.getDeviceResponseList() != null)
-            mView.setDeviceResponseList(deviceListResponse.getDeviceResponseList());
+        if(deviceListResponse.getDeviceList() != null)
+            mView.setDeviceToView(deviceListResponse.getDeviceList());
         mView.hideLoadingIndicator();
     }
 
@@ -41,7 +41,7 @@ public class DevicePresenter implements DeviceContract.Presenter {
     }
 
     @Override
-    public void setView(DeviceContract.View view) {
+    public void setView(DeviceInPositionContract.View view) {
         this.mView = view;
     }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.smarthome.iot.data.source.remote.api.ApiAuth;
 import com.smarthome.iot.data.source.remote.api.ApiDevice;
+import com.smarthome.iot.data.source.remote.api.ApiDeviceConfig;
 import com.smarthome.iot.data.source.remote.api.ApiGroup;
 import com.smarthome.iot.data.source.remote.api.ApiPosition;
 import com.smarthome.iot.utils.AppConstants;
@@ -14,6 +15,7 @@ public class AppServiceClient extends ServiceClient {
     private static ApiGroup mIApiGroup;
     private static ApiPosition mApiPosition;
     private static ApiDevice mApiDevice;
+    private static ApiDeviceConfig mApiDeviceConfig;
 
     public static ApiAuth getLoginRemoteInstance(Context context) {
         if(mApiAuth == null){
@@ -41,5 +43,12 @@ public class AppServiceClient extends ServiceClient {
             mApiDevice = createService(context, AppConstants.END_POINT, ApiDevice.class);
         }
         return mApiDevice;
+    }
+
+    public static ApiDeviceConfig getDeviceConfigRemoteInstance(Context context) {
+        if(mApiDeviceConfig == null){
+            mApiDeviceConfig = createService(context, AppConstants.END_POINT, ApiDeviceConfig.class);
+        }
+        return mApiDeviceConfig;
     }
 }

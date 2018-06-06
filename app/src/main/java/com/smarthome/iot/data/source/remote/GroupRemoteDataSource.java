@@ -2,6 +2,7 @@ package com.smarthome.iot.data.source.remote;
 
 import android.content.Context;
 
+import com.smarthome.iot.data.model.Group;
 import com.smarthome.iot.data.source.GroupDataSource;
 import com.smarthome.iot.data.source.remote.api.ApiGroup;
 import com.smarthome.iot.data.source.remote.response.group.ListGroupResponse;
@@ -33,7 +34,25 @@ public class GroupRemoteDataSource implements GroupDataSource.RemoteDataSource {
     }
 
     @Override
-    public Single<ListGroupResponse> groupList() {
-        return mApiGroup.groupList(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()));
+    public Single<ListGroupResponse> allGroup() {
+        return mApiGroup.allGroup(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()));
+    }
+
+    @Override
+    public Single addGroup(Group group) {
+        return mApiGroup.addGroup(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),
+                group.getName(), group.getDescription());
+    }
+
+    @Override
+    public Single editGroup(Group group) {
+        return mApiGroup.editGroup(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),
+                group.getId(), group.getName());
+    }
+
+    @Override
+    public Single deleteGroup(int id) {
+        return mApiGroup.deleteGroup(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),
+                id);
     }
 }

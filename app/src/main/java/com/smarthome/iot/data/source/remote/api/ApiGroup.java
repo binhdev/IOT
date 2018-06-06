@@ -1,5 +1,6 @@
 package com.smarthome.iot.data.source.remote.api;
 
+import com.smarthome.iot.data.source.remote.response.BaseResponse;
 import com.smarthome.iot.data.source.remote.response.group.ListGroupResponse;
 
 import io.reactivex.Observable;
@@ -15,23 +16,25 @@ import retrofit2.http.Query;
 
 public interface ApiGroup {
 
-    @PUT("group/edit/{id}")
-    Observable editGroup(@Path("id") String id);
+    @POST("group/add")
+    Single<BaseResponse> addGroup(@Header("Authorization") String token, @Query("name") String name,
+                                  @Query("description") String description);
 
-    @PUT("group/remove_device")
-    Observable removeDeviceInGroup(@Query("devices") String devices);
+    @PUT("group/edit/{id}")
+    Single<BaseResponse> editGroup(@Header("Authorization") String token, @Path("id") int id, @Query("name") String name);
+
+    @DELETE("group/delete/{id}")
+    Single<BaseResponse> deleteGroup(@Header("Authorization") String token, @Path("id") int id);
+
+    @DELETE("group/remove_device")
+    Single<BaseResponse> removeDeviceInGroup(@Header("Authorization") String token, @Query("devices") String devices);
 
     @Headers({"Content-Type:application/json"})
     @GET("group/list")
-    Single<ListGroupResponse> groupList(@Header("Authorization") String token);
-
-    @DELETE("group/delete/{id}")
-    Observable deleteGroup(@Path("id") String id);
-
-    @POST("group/add")
-    Observable addGroup(@Query("name") String name, @Query("description") String description);
+    Single<ListGroupResponse> allGroup(@Header("Authorization") String token);
 
     @PUT("group/add_device")
-    Observable addDeviceToGroup(@Query("id") String id, @Query("devices") String devices);
+    Single<BaseResponse> addDeviceToGroup(@Header("Authorization") String token, @Query("id") String id,
+                                @Query("devices") String devices);
 
 }

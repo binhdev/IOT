@@ -1,10 +1,8 @@
 package com.smarthome.iot.ui.main.fragment.position;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,9 +17,7 @@ import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.repository.PositionRepository;
 import com.smarthome.iot.data.source.local.PositionLocalDataSource;
 import com.smarthome.iot.data.source.remote.PositionRemoteDataSource;
-import com.smarthome.iot.ui.device.DeviceActivity;
 import com.smarthome.iot.ui.main.fragment.BaseFragment;
-import com.smarthome.iot.utils.navigator.Navigator;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 import com.smarthome.iot.ui.main.fragment.position.adapter.PositionViewHolder;
 import com.unnamed.b.atv.model.TreeNode;

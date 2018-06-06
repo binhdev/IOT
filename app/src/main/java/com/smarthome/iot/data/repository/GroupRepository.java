@@ -1,5 +1,6 @@
 package com.smarthome.iot.data.repository;
 
+import com.smarthome.iot.data.model.Group;
 import com.smarthome.iot.data.model.User;
 import com.smarthome.iot.data.source.GroupDataSource;
 import com.smarthome.iot.data.source.local.GroupLocalDataSource;
@@ -33,17 +34,22 @@ public class GroupRepository implements GroupDataSource.LocalDataSource, GroupDa
     }
 
     @Override
-    public Observable insertGroup(User user) {
-        return null;
+    public Single<ListGroupResponse> allGroup() {
+        return mGroupRemoteDataSource.allGroup();
     }
 
     @Override
-    public Observable deleteGroup(User user) {
-        return null;
+    public Single addGroup(Group group) {
+        return mGroupRemoteDataSource.addGroup(group);
     }
 
     @Override
-    public Single<ListGroupResponse> groupList() {
-        return mGroupRemoteDataSource.groupList();
+    public Single editGroup(Group group) {
+        return mGroupRemoteDataSource.editGroup(group);
+    }
+
+    @Override
+    public Single deleteGroup(int id) {
+        return mGroupRemoteDataSource.deleteGroup(id);
     }
 }

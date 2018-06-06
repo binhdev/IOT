@@ -14,12 +14,11 @@ import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.repository.PositionRepository;
 import com.smarthome.iot.data.source.local.PositionLocalDataSource;
 import com.smarthome.iot.data.source.remote.PositionRemoteDataSource;
-import com.smarthome.iot.ui.device.DeviceActivity;
-import com.smarthome.iot.ui.widget.dialog.PositionEditDialog;
+import com.smarthome.iot.ui.device.DeviceInPositionActivity;
+import com.smarthome.iot.ui.widget.dialog.PositionDialog;
 import com.smarthome.iot.utils.AppConstants;
 import com.smarthome.iot.utils.navigator.Navigator;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
-import com.smarthome.iot.ui.widget.dialog.PositionCreateDialog;
 import com.unnamed.b.atv.model.TreeNode;
 
 public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionViewHolder.IconTreeItem> implements PositionHolderContract.View {
@@ -45,12 +44,12 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
         arrowView = view.findViewById(R.id.arrow_icon);
 
         view.findViewById(R.id.btn_add).setOnClickListener(v -> {
-            PositionCreateDialog positionCreateDialog = new PositionCreateDialog(context);
-            positionCreateDialog.setListener(new PositionCreateDialog.PositionCreateDialogListener() {
+            PositionDialog positionCreateDialog = new PositionDialog(context, null);
+            positionCreateDialog.setListener(new PositionDialog.PositionDialogListener() {
                 @Override
                 public void onOkay(Position position) {
                     position.setParentId(value.mPosition.getId());
-                    mPresenter.createPosition(position);
+                    mPresenter.addPosition(position);
                 }
 
                 @Override
@@ -63,8 +62,8 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
         });
 
         view.findViewById(R.id.btn_edit).setOnClickListener(v -> {
-            PositionEditDialog positionEditDialog = new PositionEditDialog(context, value.mPosition);
-            positionEditDialog.setListener(new PositionEditDialog.PositionEditDialogListener() {
+            PositionDialog positionEditDialog = new PositionDialog(context, value.mPosition);
+            positionEditDialog.setListener(new PositionDialog.PositionDialogListener() {
                 @Override
                 public void onOkay(Position position) {
                     mPresenter.editPosition(position);
@@ -89,7 +88,7 @@ public class PositionViewHolder extends TreeNode.BaseNodeViewHolder<PositionView
             Navigator navigator = new Navigator((Activity)context);
             Bundle bundle = new Bundle();
             bundle.putSerializable(AppConstants.POSITION_OBJECT, value.mPosition);
-            navigator.startActivity(DeviceActivity.class, bundle);
+            navigator.startActivity(DeviceInPositionActivity.class, bundle);
         });
 
         view.findViewById(R.id.position_wrapper).setOnClickListener(view1 -> {

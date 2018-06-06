@@ -9,9 +9,18 @@ import java.util.List;
 public interface GroupContract {
     interface View extends BaseView {
         void setGroupListView(List<Group> groupList);
+        void editGroupSuccess();
+        void editGroupFailed();
+        void deleteGroupSuccess();
+        void deleteGroupFailed();
+        void createGroupSuccess();
+        void createGroupFailed();
     }
 
     interface Presenter extends BasePresenter<View> {
-        void groupList();
+        void allGroup();
+        void deleteGroup(int id);
+        void addGroup(Group group);
+        void editGroup(Group group);
     }
 }

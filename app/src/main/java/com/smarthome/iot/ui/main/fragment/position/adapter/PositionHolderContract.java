@@ -6,7 +6,7 @@ public interface PositionHolderContract {
 
     interface Presenter{
         void deletePosition(int[] ids);
-        void createPosition(Position position);
+        void addPosition(Position position);
         void editPosition(Position position);
     }
 

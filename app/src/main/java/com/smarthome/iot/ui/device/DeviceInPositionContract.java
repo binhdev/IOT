@@ -1,18 +1,19 @@
 package com.smarthome.iot.ui.device;
 
+import com.smarthome.iot.data.model.Device;
 import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 import com.smarthome.iot.ui.base.BasePresenter;
 import com.smarthome.iot.ui.base.BaseView;
 
 import java.util.List;
 
-public interface DeviceContract {
+public interface DeviceInPositionContract {
 
     interface View extends BaseView {
-        void setDeviceResponseList(List<DeviceResponse.Data> deviceResponseList);
+        void setDeviceToView(List<Device> deviceList);
     }
 
-    interface Presenter extends BasePresenter<DeviceContract.View> {
+    interface Presenter extends BasePresenter<DeviceInPositionContract.View> {
         void deviceByPosition(String pagination, int positionId);
     }
 

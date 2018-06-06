@@ -1,5 +1,6 @@
 package com.smarthome.iot.data.source.remote.api;
 
+import com.smarthome.iot.data.source.remote.response.BaseResponse;
 import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 
 import io.reactivex.Observable;
@@ -14,14 +15,17 @@ import retrofit2.http.Query;
 
 public interface ApiDevice {
 
+    @POST("device/add")
+    Single<BaseResponse> addDevice(@Header("Authorization") String token,@Query("name") String name, @Query("code") String code, @Query("position_id") int positionId);
+
     @PUT("device/edit/{id}")
-    Observable editDevice(@Path("id") String id, @Query("name") String name, @Query("position_id") String position_id);
+    Single<BaseResponse> editDevice(@Header("Authorization") String token,@Path("id") int id, @Query("name") String name, @Query("position_id") int position_id);
 
     @DELETE("device/delete")
-    Observable deleteGroup(@Query("id") String id);
+    Single<BaseResponse> deleteGroup(@Header("Authorization") String token,@Query("id") String id);
 
     @GET("device/detail/{id}")
-    Observable deviceDetail(@Path("id") String id);
+    Observable deviceDetail(@Path("id") int id);
 
     @GET("device/list")
     Single<DeviceResponse> deviceList(@Header("Authorization") String token, @Query("pagination") String pagination);
@@ -29,8 +33,5 @@ public interface ApiDevice {
     @GET("device/list")
     Single<DeviceResponse> deviceByPosition(@Header("Authorization") String token, @Query("pagination") String pagination,
                                             @Query("position_id") int positionId);
-
-    @POST("device/add")
-    Observable addDevice(@Query("name") String name, @Query("code") String code, @Query("position_id") int positionId);
 
 }
