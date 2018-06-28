@@ -5,7 +5,7 @@ import android.util.Log;
 
 import com.google.common.base.Preconditions;
 import com.smarthome.iot.data.repository.DeviceRepository;
-import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
+import com.smarthome.iot.data.source.remote.response.DeviceResponse;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
 
 public class DeviceInPositionPresenter implements DeviceInPositionContract.Presenter {

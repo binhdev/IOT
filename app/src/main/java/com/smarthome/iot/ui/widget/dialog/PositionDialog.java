@@ -18,7 +18,7 @@ import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.repository.PositionRepository;
 import com.smarthome.iot.data.source.local.PositionLocalDataSource;
 import com.smarthome.iot.data.source.remote.PositionRemoteDataSource;
-import com.smarthome.iot.data.source.remote.response.position.PositionResponse;
+import com.smarthome.iot.data.source.remote.response.PositionResponse;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
@@ -103,7 +103,7 @@ public class PositionDialog extends Dialog implements View.OnClickListener {
                 parentId = p.getParentId();
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, R.layout.spinner_item, positionNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, R.layout.item_spinner, positionNames);
         spinnerPositionParent.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         spinnerPositionParent.setSelection(findParentIdIndex(parentId));

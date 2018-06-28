@@ -5,7 +5,7 @@ import android.content.Context;
 import com.smarthome.iot.data.model.Group;
 import com.smarthome.iot.data.source.GroupDataSource;
 import com.smarthome.iot.data.source.remote.api.ApiGroup;
-import com.smarthome.iot.data.source.remote.response.group.ListGroupResponse;
+import com.smarthome.iot.data.source.remote.response.ListGroupResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
 import com.smarthome.iot.utils.AppConstants;
 import com.smarthome.iot.utils.AppPrefs;

@@ -1,15 +1,10 @@
 package com.smarthome.iot.data.source.remote.api;
 
-import com.smarthome.iot.data.source.remote.response.BaseResponse;
-import com.smarthome.iot.data.source.remote.response.deviceconfig.DeviceConfigResponse;
+import com.smarthome.iot.data.source.remote.response.DeviceConfigResponse;
 
 import io.reactivex.Single;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiDeviceConfig {

@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SimpleSwipeListener;
@@ -16,7 +15,6 @@ import com.smarthome.iot.data.model.Device;
 import com.smarthome.iot.data.repository.DeviceRepository;
 import com.smarthome.iot.data.source.local.DeviceLocalDataSource;
 import com.smarthome.iot.data.source.remote.DeviceRemoteDataSource;
-import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 import com.smarthome.iot.ui.widget.dialog.DeviceDialog;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 

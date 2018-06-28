@@ -24,8 +24,8 @@ import com.smarthome.iot.data.source.local.DeviceConfigLocalDataSource;
 import com.smarthome.iot.data.source.local.PositionLocalDataSource;
 import com.smarthome.iot.data.source.remote.DeviceConfigRemoteDataSource;
 import com.smarthome.iot.data.source.remote.PositionRemoteDataSource;
-import com.smarthome.iot.data.source.remote.response.deviceconfig.DeviceConfigResponse;
-import com.smarthome.iot.data.source.remote.response.position.PositionResponse;
+import com.smarthome.iot.data.source.remote.response.DeviceConfigResponse;
+import com.smarthome.iot.data.source.remote.response.PositionResponse;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
@@ -163,7 +163,7 @@ public class DeviceDialog extends Dialog implements View.OnClickListener {
             }
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, R.layout.spinner_item, positionNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, R.layout.item_spinner, positionNames);
         spinnerDevicePosition.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 

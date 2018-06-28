@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/tab_margin"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/bg_btn_conner">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/cb_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBaseText"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="@dimen/tab_margin"/>
+        <TextView
+            android:id="@+id/io_id"
+            android:text="@string/select_io"
+            android:textColor="@color/colorBlue"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:textSize="13sp"
+            android:gravity="center_vertical"
+            android:layout_margin="@dimen/tab_margin"/>
+        <Spinner
+            android:id="@+id/io_value"
+            android:text="@string/select_io"
+            android:textColor="@color/colorBaseText"
+            android:textSize="13sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:layout_margin="@dimen/tab_margin"/>
+        <Switch
+            android:id="@+id/io_value_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/tab_margin" />
+    </LinearLayout>
+
+</LinearLayout>

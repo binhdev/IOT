@@ -29,6 +29,15 @@
     <string name="item_notification">Notification</string>
     <string name="item_setting">Setting</string>
 
+    <!--Alarm-->
+    <string name="number_order">STT</string>
+    <string name="alarm_priority">Priority</string>
+    <string name="alarm_name">Name</string>
+    <string name="alarm_notification">Notification</string>
+    <string name="alarm_on">Bật</string>
+    <string name="alarm_of">Tăt</string>
+
+
     <string name="ic_folder">&#xe09d;</string>
     <string name="ic_keyboard_arrow_down">&#xe0c5;</string>
     <string name="ic_keyboard_arrow_right">&#xe0c7;</string>
@@ -49,6 +58,14 @@
     <string name="trash">Trash</string>
     <string name="edit">Edit</string>
     <string name="add">Add</string>
+
+    <!--IO-->
+    <string name="lonhon">&gt;</string>
+    <string name="bang">=</string>
+    <string name="behon">&lt;</string>
+    <string name="behonhoacbang">&lt;=</string>
+    <string name="lonhonhoacbang">&gt;=</string>
+    <string name="select_io"><u>Select IO</u></string>
 </resources>
 
 

@@ -1,7 +1,6 @@
 package com.smarthome.iot.ui.device;
 
 import com.smarthome.iot.data.model.Device;
-import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 import com.smarthome.iot.ui.base.BasePresenter;
 import com.smarthome.iot.ui.base.BaseView;
 

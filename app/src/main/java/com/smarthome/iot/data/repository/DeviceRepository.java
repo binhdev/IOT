@@ -5,7 +5,7 @@ import com.smarthome.iot.data.source.DeviceDataSource;
 import com.smarthome.iot.data.source.local.DeviceLocalDataSource;
 import com.smarthome.iot.data.source.remote.DeviceRemoteDataSource;
 import com.smarthome.iot.data.source.remote.response.BaseResponse;
-import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
+import com.smarthome.iot.data.source.remote.response.DeviceResponse;
 
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;

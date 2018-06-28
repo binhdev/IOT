@@ -1,4 +1,4 @@
-package com.smarthome.iot.data.source.remote.response.position;
+package com.smarthome.iot.data.source.remote.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

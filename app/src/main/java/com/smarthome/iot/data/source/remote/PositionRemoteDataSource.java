@@ -6,7 +6,7 @@ import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.source.PositionDataSource;
 import com.smarthome.iot.data.source.remote.api.ApiPosition;
 import com.smarthome.iot.data.source.remote.response.BaseResponse;
-import com.smarthome.iot.data.source.remote.response.position.PositionResponse;
+import com.smarthome.iot.data.source.remote.response.PositionResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
 import com.smarthome.iot.utils.AppConstants;
 import com.smarthome.iot.utils.AppPrefs;

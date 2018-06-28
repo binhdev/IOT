@@ -2,15 +2,9 @@ package com.smarthome.iot.data.source.remote;
 
 import android.content.Context;
 
-import com.google.gson.Gson;
-import com.smarthome.iot.data.model.Device;
 import com.smarthome.iot.data.source.DeviceConfigDataSource;
-import com.smarthome.iot.data.source.DeviceDataSource;
-import com.smarthome.iot.data.source.remote.api.ApiDevice;
 import com.smarthome.iot.data.source.remote.api.ApiDeviceConfig;
-import com.smarthome.iot.data.source.remote.response.BaseResponse;
-import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
-import com.smarthome.iot.data.source.remote.response.deviceconfig.DeviceConfigResponse;
+import com.smarthome.iot.data.source.remote.response.DeviceConfigResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
 import com.smarthome.iot.utils.AppConstants;
 import com.smarthome.iot.utils.AppPrefs;

@@ -5,7 +5,7 @@ import android.content.Context;
 import com.google.common.base.Preconditions;
 import com.smarthome.iot.data.model.Group;
 import com.smarthome.iot.data.repository.GroupRepository;
-import com.smarthome.iot.data.source.remote.response.group.ListGroupResponse;
+import com.smarthome.iot.data.source.remote.response.ListGroupResponse;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
 
 public class GroupPresenter implements GroupContract.Presenter {

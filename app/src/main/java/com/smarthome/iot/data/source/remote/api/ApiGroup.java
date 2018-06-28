@@ -1,9 +1,8 @@
 package com.smarthome.iot.data.source.remote.api;
 
 import com.smarthome.iot.data.source.remote.response.BaseResponse;
-import com.smarthome.iot.data.source.remote.response.group.ListGroupResponse;
+import com.smarthome.iot.data.source.remote.response.ListGroupResponse;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;

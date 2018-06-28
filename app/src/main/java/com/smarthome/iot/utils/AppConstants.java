@@ -11,4 +11,5 @@ public class AppConstants {
     public static final String SCHEMA_BEARER = "Bearer";
 
     public static final String POSITION_OBJECT = "position_object";
+    public static final String ALARM_OBJECT = "alarm_object";
 }

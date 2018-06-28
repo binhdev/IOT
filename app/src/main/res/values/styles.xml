@@ -42,4 +42,21 @@
         <item name="android:layout_centerVertical">true</item>
     </style>
 
+    <style name="input_form_control">
+        <item name="android:padding">@dimen/tab_margin</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_margin">@dimen/tab_margin</item>
+        <item name="android:background">@drawable/bg_btn_conner</item>
+        <item name="android:textColor">@color/colorBaseText</item>
+        <item name="android:textColorHint">@color/colorBaseText</item>
+    </style>
+
+    <style name="info_form_control">
+        <item name="android:padding">@dimen/tab_margin</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:layout_margin">@dimen/tab_margin</item>
+        <item name="android:textColor">@color/colorBaseText</item>
+        <item name="android:textColorHint">@color/colorBaseText</item>
+    </style>
+
 </resources>

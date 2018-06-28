@@ -1,6 +1,6 @@
 package com.smarthome.iot.data.source;
 
-import com.smarthome.iot.data.source.remote.response.deviceconfig.DeviceConfigResponse;
+import com.smarthome.iot.data.source.remote.response.DeviceConfigResponse;
 
 import io.reactivex.Single;
 

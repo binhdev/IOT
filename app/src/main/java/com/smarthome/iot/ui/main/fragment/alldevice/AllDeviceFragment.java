@@ -16,7 +16,6 @@ import com.smarthome.iot.data.model.Device;
 import com.smarthome.iot.data.repository.DeviceRepository;
 import com.smarthome.iot.data.source.local.DeviceLocalDataSource;
 import com.smarthome.iot.data.source.remote.DeviceRemoteDataSource;
-import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
 import com.smarthome.iot.ui.device.adapter.DeviceAdapter;
 import com.smarthome.iot.ui.main.fragment.BaseFragment;
 import com.smarthome.iot.ui.widget.dialog.DeviceDialog;

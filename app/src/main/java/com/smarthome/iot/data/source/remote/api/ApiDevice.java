@@ -1,7 +1,7 @@
 package com.smarthome.iot.data.source.remote.api;
 
 import com.smarthome.iot.data.source.remote.response.BaseResponse;
-import com.smarthome.iot.data.source.remote.response.device.DeviceResponse;
+import com.smarthome.iot.data.source.remote.response.DeviceResponse;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;

@@ -3,7 +3,7 @@ package com.smarthome.iot.data.repository;
 import com.smarthome.iot.data.source.DeviceConfigDataSource;
 import com.smarthome.iot.data.source.local.DeviceConfigLocalDataSource;
 import com.smarthome.iot.data.source.remote.DeviceConfigRemoteDataSource;
-import com.smarthome.iot.data.source.remote.response.deviceconfig.DeviceConfigResponse;
+import com.smarthome.iot.data.source.remote.response.DeviceConfigResponse;
 
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;

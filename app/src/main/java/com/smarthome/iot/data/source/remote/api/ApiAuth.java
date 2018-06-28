@@ -1,6 +1,6 @@
 package com.smarthome.iot.data.source.remote.api;
 
-import com.smarthome.iot.data.source.remote.response.auth.LoginResponse;
+import com.smarthome.iot.data.source.remote.response.LoginResponse;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;

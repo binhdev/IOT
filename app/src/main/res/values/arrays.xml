@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="value_compare">
+        <item>@string/bang</item>
+        <item>@string/lonhon</item>
+        <item>@string/lonhonhoacbang</item>
+        <item>@string/behon</item>
+        <item>@string/behonhoacbang</item>
+    </string-array>
+    <string-array name="value_type">
+        <item>Fix value</item>
+        <item>Select IO</item>
+    </string-array>
+    <string-array name="condition_compare">
+        <item>and</item>
+        <item>or</item>
+    </string-array>
+</resources>

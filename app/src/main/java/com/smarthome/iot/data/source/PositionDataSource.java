@@ -1,7 +1,7 @@
 package com.smarthome.iot.data.source;
 import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.source.remote.response.BaseResponse;
-import com.smarthome.iot.data.source.remote.response.position.PositionResponse;
+import com.smarthome.iot.data.source.remote.response.PositionResponse;
 
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;

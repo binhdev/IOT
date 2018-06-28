@@ -1,4 +1,4 @@
-package com.smarthome.iot.data.source.remote.response.device;
+package com.smarthome.iot.data.source.remote.response;
 import java.io.Serializable;
 import java.util.List;
 
