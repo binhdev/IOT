@@ -14,10 +14,10 @@
         android:title="@string/item_alldevice"/>
     <item
         android:id="@+id/action_alarm"
-        android:icon="@drawable/ic_notification"
+        android:icon="@drawable/ic_alarm"
         android:title="@string/item_alarm"/>
     <item
         android:id="@+id/action_notification"
-        android:icon="@drawable/ic_alarm"
+        android:icon="@drawable/ic_notification"
         android:title="@string/item_notification"/>
 </menu>

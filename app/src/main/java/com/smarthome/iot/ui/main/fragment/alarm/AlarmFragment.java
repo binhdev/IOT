@@ -13,11 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.smarthome.iot.R;
-import com.smarthome.iot.data.model.Alarm;
+import com.smarthome.iot.data.model.alarm.Alarm;
 import com.smarthome.iot.data.repository.AlarmRepository;
 import com.smarthome.iot.data.source.local.AlarmLocalDataSource;
-import com.smarthome.iot.data.source.remote.service.AlarmRemoteDataSource;
-import com.smarthome.iot.ui.alarm.AlarmAddActivity;
+import com.smarthome.iot.data.source.remote.AlarmRemoteDataSource;
+import com.smarthome.iot.ui.alarm.AddAlarmActivity;
 import com.smarthome.iot.ui.main.fragment.alarm.adapter.AlarmAdapter;
 import com.smarthome.iot.utils.navigator.Navigator;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
@@ -62,7 +62,7 @@ public class AlarmFragment extends Fragment implements AlarmContract.View {
 
         view.findViewById(R.id.fab).setOnClickListener(v -> {
             Navigator navigator = new Navigator(getActivity());
-            navigator.startActivity(AlarmAddActivity.class);
+            navigator.startActivity(AddAlarmActivity.class);
         });
 
         initData();

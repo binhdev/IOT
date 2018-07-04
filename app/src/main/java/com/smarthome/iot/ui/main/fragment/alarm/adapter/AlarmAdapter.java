@@ -12,13 +12,12 @@ import android.widget.TextView;
 
 import com.daimajia.swipe.SimpleSwipeListener;
 import com.daimajia.swipe.SwipeLayout;
-import com.google.gson.Gson;
 import com.smarthome.iot.R;
-import com.smarthome.iot.data.model.Alarm;
+import com.smarthome.iot.data.model.alarm.Alarm;
 import com.smarthome.iot.data.repository.AlarmRepository;
 import com.smarthome.iot.data.source.local.AlarmLocalDataSource;
-import com.smarthome.iot.data.source.remote.service.AlarmRemoteDataSource;
-import com.smarthome.iot.ui.alarm.AlarmEditActivity;
+import com.smarthome.iot.data.source.remote.AlarmRemoteDataSource;
+import com.smarthome.iot.ui.alarm.EditAlarmActivity;
 import com.smarthome.iot.utils.AppConstants;
 import com.smarthome.iot.utils.helper.StringHelper;
 import com.smarthome.iot.utils.navigator.Navigator;
@@ -96,7 +95,7 @@ public class AlarmAdapter  extends RecyclerView.Adapter<AlarmAdapter.ViewHolder>
             Navigator navigator = new Navigator((Activity)mContext);
             Bundle bundle = new Bundle();
             bundle.putSerializable(AppConstants.ALARM_OBJECT, alarm);
-            navigator.startActivity(AlarmEditActivity.class, bundle);
+            navigator.startActivity(EditAlarmActivity.class, bundle);
         });
     }
 

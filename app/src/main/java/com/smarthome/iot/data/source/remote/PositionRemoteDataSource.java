@@ -49,19 +49,25 @@ public class PositionRemoteDataSource implements PositionDataSource.RemoteDataSo
 
     @Override
     public Single<BaseResponse> deletePosition(int[] ids) {
-        return mApiPosition.deletePosition(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),
-                ids);
+        return mApiPosition.deletePosition(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,
+                AppPrefs.getInstance(context).getApiAccessToken()), ids);
     }
 
     @Override
     public Single<PositionResponse> positionTreeStructure() {
-        return mApiPosition.positionTreeStructure(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken())
-        , "false");
+        return mApiPosition.positionTreeStructure(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,
+                AppPrefs.getInstance(context).getApiAccessToken()), "false");
     }
 
     @Override
     public Single<PositionResponse> allPosition() {
-        return mApiPosition.allPosition(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),
-                "false");
+        return mApiPosition.allPosition(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,
+                AppPrefs.getInstance(context).getApiAccessToken()),"false");
+    }
+
+    @Override
+    public Single<PositionResponse> allPositionWithDataTypeIO(int dataTypeIO) {
+        return mApiPosition.allPositionWithDataTypeIO(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,
+                AppPrefs.getInstance(context).getApiAccessToken()),"false", dataTypeIO);
     }
 }

@@ -26,5 +26,6 @@
     <color name="backgroundColorPress">#DBDBD3</color>
 
     <color name="backgroundPrimary">#E9E9E9</color>
+    <color name="colorTextHint">#E0E0E0</color>
 
 </resources>

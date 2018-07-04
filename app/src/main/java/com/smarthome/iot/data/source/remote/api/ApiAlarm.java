@@ -1,9 +1,12 @@
 package com.smarthome.iot.data.source.remote.api;
 
+import com.smarthome.iot.data.source.remote.request.AddAlarmRequest;
 import com.smarthome.iot.data.source.remote.response.BaseResponse;
 import com.smarthome.iot.data.source.remote.response.AlarmResponse;
+import com.smarthome.iot.data.source.remote.response.DetailAlarmResponse;
 
 import io.reactivex.Single;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -21,12 +24,12 @@ public interface ApiAlarm {
     Single<BaseResponse> deleteAlarm(@Header("Authorization") String token, @Query("id[]") int[] id);
 
     @GET("alarm/detail/{id}")
-    Single<AlarmResponse> alarmDetail(@Header("Authorization") String token, @Path("id") String id);
+    Single<DetailAlarmResponse> detailAlarm(@Header("Authorization") String token, @Path("id") int id);
 
     @PUT("alarm/edit/{id}")
-    Single<BaseResponse> editAlarm(@Header("Authorization") String token, @Path("name") String name, @Query("priority") String priority);
+    Single<BaseResponse> editAlarm(@Header("Authorization") String token,@Path("id") int alarmId, @Body AddAlarmRequest body);
 
     @POST("alarm/add")
-    Single<BaseResponse> addAlarm(@Header("Authorization") String token, @Query("name") String name, @Query("code") String code, @Query("position_id") String position_id);
+    Single<BaseResponse> addAlarm(@Header("Authorization") String token, @Body AddAlarmRequest body);
 
 }

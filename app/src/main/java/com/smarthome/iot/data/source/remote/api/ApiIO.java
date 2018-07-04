@@ -13,4 +13,9 @@ public interface ApiIO {
     Single<IOResponse> ioByDevice(@Header("Authorization") String token, @Query("pagination") String pagination,
                                       @Query("device_id") int deviceId, @Query("type") int type);
 
+
+    @GET("io/list")
+    Single<IOResponse> ioByDeviceWithDataTypeIO(@Header("Authorization") String token, @Query("pagination") String pagination,
+                                  @Query("device_id") int deviceId, @Query("type") int type, @Query("type") int dataTypeIO);
+
 }

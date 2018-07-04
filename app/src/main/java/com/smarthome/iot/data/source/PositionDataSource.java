@@ -22,5 +22,7 @@ public interface PositionDataSource {
         Single<PositionResponse> positionTreeStructure();
 
         Single<PositionResponse> allPosition();
+
+        Single<PositionResponse> allPositionWithDataTypeIO(int dataTypeIO);
     }
 }

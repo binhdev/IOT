@@ -46,8 +46,8 @@
             <ImageView
                 android:id="@+id/ic_device"
                 android:src="@drawable/ic_device"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="@dimen/control_width"
+                android:layout_height="@dimen/control_height"
                 android:layout_centerVertical="true"/>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -80,12 +80,13 @@
                 android:padding="8dp">
                 <Switch
                     android:id="@+id/switcher"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-condensed"
-                    />
+                    android:layout_height="@dimen/control_height"
+                    android:switchMinWidth="@dimen/control_width"
+                    android:thumb="@drawable/switch_thumb"
+                    android:track="@drawable/switch_track"
+                    android:showText="true"
+                    android:layout_gravity="center_vertical"/>
                 <ImageView
                     android:src="@drawable/ic_eye"
                     android:id="@+id/btn_open"

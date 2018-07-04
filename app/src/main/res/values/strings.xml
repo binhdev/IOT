@@ -66,6 +66,11 @@
     <string name="behonhoacbang">&lt;=</string>
     <string name="lonhonhoacbang">&gt;=</string>
     <string name="select_io"><u>Select IO</u></string>
+
+    <string name="fix_value">Fix value</string>
+    <string name="select_io_type">Select IO</string>
+
+
 </resources>
 
 

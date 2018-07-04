@@ -1,6 +1,6 @@
 package com.smarthome.iot.data.source;
 
-import com.smarthome.iot.data.model.Device;
+import com.smarthome.iot.data.model.device.Device;
 import com.smarthome.iot.data.source.remote.response.BaseResponse;
 import com.smarthome.iot.data.source.remote.response.DeviceResponse;
 
@@ -16,6 +16,8 @@ public interface DeviceDataSource {
         Single<DeviceResponse> deviceList();
 
         Single<DeviceResponse> deviceByPosition(int positionId);
+
+        Single<DeviceResponse> deviceByPositionWithDataTypeIO(int positionId, int dataTypeIO);
 
         Single<BaseResponse> addDevice(Device device);
 

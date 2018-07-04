@@ -22,8 +22,8 @@
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.device.DeviceInPositionActivity" />
         <activity android:name=".ui.device.DeviceInGroupActivity" />
-        <activity android:name=".ui.alarm.AlarmAddActivity" />
-        <activity android:name=".ui.alarm.AlarmEditActivity"></activity>
+        <activity android:name=".ui.alarm.AddAlarmActivity" />
+        <activity android:name=".ui.alarm.EditAlarmActivity"></activity>
     </application>
 
 </manifest>

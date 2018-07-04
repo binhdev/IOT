@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.smarthome.iot.R;
-import com.smarthome.iot.data.model.IO;
+import com.smarthome.iot.data.model.io.IO;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class IOAdapter extends ArrayAdapter<IO> {
         View view = LayoutInflater.from(getContext())
                 .inflate(R.layout.item_spinner, parent, false);
         TextView tvPositionName = view.findViewById(R.id.tv_name);
-        tvPositionName.setText(ioList.get(position).getName());
+        tvPositionName.setText(ioList.get(position).name);
         return view;
     }
 
@@ -37,7 +37,7 @@ public class IOAdapter extends ArrayAdapter<IO> {
         View view = LayoutInflater.from(getContext())
                 .inflate(R.layout.item_spinner_dropdow_general, parent, false);
         TextView tvPositionName = view.findViewById(R.id.tv_name);
-        tvPositionName.setText(ioList.get(position).getName());
+        tvPositionName.setText(ioList.get(position).name);
         return view;
     }
 

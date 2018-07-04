@@ -15,8 +15,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.smarthome.iot.R;
-import com.smarthome.iot.data.model.Device;
-import com.smarthome.iot.data.model.DeviceConfig;
+import com.smarthome.iot.data.model.device.Device;
+import com.smarthome.iot.data.model.device.DeviceConfig;
 import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.repository.DeviceConfigRepository;
 import com.smarthome.iot.data.repository.PositionRepository;

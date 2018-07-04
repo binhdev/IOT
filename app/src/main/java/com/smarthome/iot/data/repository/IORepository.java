@@ -1,14 +1,8 @@
 package com.smarthome.iot.data.repository;
 
-import com.smarthome.iot.data.model.Device;
-import com.smarthome.iot.data.source.DeviceDataSource;
 import com.smarthome.iot.data.source.IODataSource;
-import com.smarthome.iot.data.source.local.DeviceLocalDataSource;
 import com.smarthome.iot.data.source.local.IOLocalDataSource;
-import com.smarthome.iot.data.source.remote.DeviceRemoteDataSource;
 import com.smarthome.iot.data.source.remote.IORemoteDataSource;
-import com.smarthome.iot.data.source.remote.response.BaseResponse;
-import com.smarthome.iot.data.source.remote.response.DeviceResponse;
 import com.smarthome.iot.data.source.remote.response.IOResponse;
 
 import io.reactivex.Single;
@@ -38,5 +32,10 @@ public class IORepository implements IODataSource.LocalDataSource, IODataSource.
     @Override
     public Single<IOResponse> ioByDevice(int deviceId, int type) {
         return mIORemoteDataSource.ioByDevice(deviceId, type);
+    }
+
+    @Override
+    public Single<IOResponse> ioByDeviceWithDataTypeIO(int deviceId, int type, int dataTypeIO) {
+        return mIORemoteDataSource.ioByDeviceWithDataTypeIO(deviceId, type, dataTypeIO);
     }
 }

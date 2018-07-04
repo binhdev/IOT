@@ -14,8 +14,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.smarthome.iot.R;
-import com.smarthome.iot.data.model.Device;
-import com.smarthome.iot.data.model.IO;
+import com.smarthome.iot.data.model.device.Device;
+import com.smarthome.iot.data.model.io.IO;
 import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.repository.DeviceRepository;
 import com.smarthome.iot.data.repository.IORepository;
@@ -32,8 +32,8 @@ import com.smarthome.iot.data.source.remote.response.PositionResponse;
 import com.smarthome.iot.ui.widget.adapter.DeviceAdapter;
 import com.smarthome.iot.ui.widget.adapter.IOAdapter;
 import com.smarthome.iot.ui.widget.adapter.PositionAdapter;
+import com.smarthome.iot.ui.widget.io.types.IOType;
 import com.smarthome.iot.utils.collections.Filter;
-import com.smarthome.iot.utils.collections.Predicate;
 import com.smarthome.iot.utils.rx.SchedulerProvider;
 
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class IOSelectDialog extends Dialog implements View.OnClickListener {
+public class IOSelectDialog extends Dialog{
 
     private Context mContext;
 
@@ -58,15 +58,25 @@ public class IOSelectDialog extends Dialog implements View.OnClickListener {
     @BindView(R.id.btn_apply)
     public Button btnApply;
 
-    public static enum TYPE { HAS_INPUT, HAS_OUTPUT, HAS_INPUT_OUTPUT};
-    private TYPE type;
+    private int mIOType;
 
     private boolean isLoading = false;
+    private Position mPositionSelected;
+    private Device mDeviceSelected;
+    private IO mIOSelected;
+    private int mDataTypeIO;
 
-    public IOSelectDialog(@NonNull Context context, TYPE type) {
+    /**
+     *
+     * @param context
+     * @param ioType have three options: HAS_INPUT, HAS_OUTPUT, HAS_INPUT_OUTPUT
+     * @param dataTypeIO query all io have the same dataType is dataTypeIO
+     */
+    public IOSelectDialog(@NonNull Context context, int ioType, int dataTypeIO) {
         super(context);
         this.mContext = context;
-        this.type = type;
+        this.mIOType = ioType;
+        this.mDataTypeIO = dataTypeIO;
     }
 
     @Override
@@ -74,6 +84,11 @@ public class IOSelectDialog extends Dialog implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_select_io);
+
+        initGUI();
+    }
+
+    private void initGUI(){
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -84,6 +99,25 @@ public class IOSelectDialog extends Dialog implements View.OnClickListener {
         getWindow().setGravity(Gravity.CENTER);
         ButterKnife.bind(this);
 
+        btnApply.setOnClickListener(view -> {
+            if(spPosition.getAdapter().getCount() > 0 && spDevice.getAdapter().getCount() > 0
+                    && spIO.getAdapter().getCount() > 0){
+                mPositionSelected = (Position) spPosition.getSelectedItem();
+                mDeviceSelected = (Device) spDevice.getSelectedItem();
+                mIOSelected = (IO) spIO.getSelectedItem();
+
+                if(mDataTypeIO == IOType.IO_NOT_FILTER_BY_DATA_TYPE)
+                    ioListener.callBack(mPositionSelected, mDeviceSelected,  mIOSelected);
+                else
+                    ioFilterByDataTypeListener.callBack(mPositionSelected, mDeviceSelected,  mIOSelected);
+            }else{
+                Toast.makeText(getContext(), "All field can not empty", Toast.LENGTH_LONG).show();
+            }
+
+
+            dismiss();
+        });
+
         loadPosition();
     }
 
@@ -92,11 +126,20 @@ public class IOSelectDialog extends Dialog implements View.OnClickListener {
         PositionRepository positionRepository = PositionRepository.getInstance(PositionLocalDataSource.getInstance(),
                 PositionRemoteDataSource.getInstance(mContext));
         SchedulerProvider schedulerProvider = SchedulerProvider.getInstance();
-        positionRepository.allPosition()
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
-                .subscribe(positionListResponse -> handlePositionResponseSuccess(positionListResponse),
-                        error -> handlePositionResponeFailed(error));
+
+        if(mDataTypeIO == IOType.IO_NOT_FILTER_BY_DATA_TYPE){
+            positionRepository.allPosition()
+                    .subscribeOn(schedulerProvider.io())
+                    .observeOn(schedulerProvider.ui())
+                    .subscribe(positionListResponse -> handlePositionResponseSuccess(positionListResponse),
+                            error -> handlePositionResponeFailed(error));
+        }else{
+            positionRepository.allPositionWithDataTypeIO(mDataTypeIO)
+                    .subscribeOn(schedulerProvider.io())
+                    .observeOn(schedulerProvider.ui())
+                    .subscribe(positionListResponse -> handlePositionResponseSuccess(positionListResponse),
+                            error -> handlePositionResponeFailed(error));
+        }
     }
 
     private void handlePositionResponseSuccess(PositionResponse positionListResponse){
@@ -110,15 +153,14 @@ public class IOSelectDialog extends Dialog implements View.OnClickListener {
 
     private void fillPositionToSpinner(List<Position> positionList){
         List<Position> positionListHasIO = new ArrayList<>();
-        switch (type){
-            case HAS_INPUT:
+        switch (mIOType){
+            case IOType.HAS_INPUT:
                 positionListHasIO = Filter.filter(positionList, position -> position.getHasIoInput());
                 break;
-            case HAS_OUTPUT:
-
+            case IOType.HAS_OUTPUT:
                 positionListHasIO = Filter.filter(positionList, position -> position.getHasIoOutput());
                 break;
-            case HAS_INPUT_OUTPUT:
+            case IOType.HAS_INPUT_OUTPUT:
                 positionListHasIO = Filter.filter(positionList, position -> position.getHasIoInput() || position.getHasIoOutput());
                 break;
         }
@@ -150,24 +192,34 @@ public class IOSelectDialog extends Dialog implements View.OnClickListener {
         DeviceRepository deviceRepository = DeviceRepository.getInstance(DeviceLocalDataSource.getInstance(),
                 DeviceRemoteDataSource.getInstance(mContext));
         SchedulerProvider schedulerProvider = SchedulerProvider.getInstance();
-        deviceRepository.deviceByPosition(positionId)
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
-                .subscribe(deviceResponse -> handleDeviceResponseSuccess(deviceResponse),
-                        error -> handleDeviceResponseFailed(error));
+
+        //Query not filter io
+        if(mDataTypeIO == IOType.IO_NOT_FILTER_BY_DATA_TYPE){
+            deviceRepository.deviceByPosition(positionId)
+                    .subscribeOn(schedulerProvider.io())
+                    .observeOn(schedulerProvider.ui())
+                    .subscribe(deviceResponse -> handleDeviceResponseSuccess(deviceResponse),
+                            error -> handleDeviceResponseFailed(error));
+        }else{
+            deviceRepository.deviceByPositionWithDataTypeIO(positionId, mDataTypeIO)
+                    .subscribeOn(schedulerProvider.io())
+                    .observeOn(schedulerProvider.ui())
+                    .subscribe(deviceResponse -> handleDeviceResponseSuccess(deviceResponse),
+                            error -> handleDeviceResponseFailed(error));
+        }
     }
 
     private void fillDeviceToSpinner(List<Device> deviceList){
         List<Device> deviceListHasIO = null;
-        switch (type){
-            case HAS_INPUT:
+        switch (mIOType){
+            case IOType.HAS_INPUT:
                 deviceListHasIO = Filter.filter(deviceList, device -> device.getHasIoInput());
                 break;
-            case HAS_OUTPUT:
+            case IOType.HAS_OUTPUT:
 
                 deviceListHasIO = Filter.filter(deviceList, device -> device.getHasIoOutput());
                 break;
-            case HAS_INPUT_OUTPUT:
+            case IOType.HAS_INPUT_OUTPUT:
                 deviceListHasIO = Filter.filter(deviceList, device -> device.getHasIoInput() || device.getHasIoOutput());
                 break;
         }
@@ -208,22 +260,31 @@ public class IOSelectDialog extends Dialog implements View.OnClickListener {
         IORepository ioRepository = IORepository.getInstance(IOLocalDataSource.getInstance(),
                 IORemoteDataSource.getInstance(mContext));
         SchedulerProvider schedulerProvider = SchedulerProvider.getInstance();
-        ioRepository.ioByDevice(deviceId, 1)
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
-                .subscribe(ioResponse -> handleIOResponseSuccess(ioResponse),
-                        error -> handleIOResponseFailed(error));
+
+        if(mDataTypeIO == IOType.IO_NOT_FILTER_BY_DATA_TYPE){
+            ioRepository.ioByDevice(deviceId, mIOType)
+                    .subscribeOn(schedulerProvider.io())
+                    .observeOn(schedulerProvider.ui())
+                    .subscribe(ioResponse -> handleIOResponseSuccess(ioResponse),
+                            error -> handleIOResponseFailed(error));
+        }else{
+            ioRepository.ioByDeviceWithDataTypeIO(deviceId, mIOType, mDataTypeIO)
+                    .subscribeOn(schedulerProvider.io())
+                    .observeOn(schedulerProvider.ui())
+                    .subscribe(ioResponse -> handleIOResponseSuccess(ioResponse),
+                            error -> handleIOResponseFailed(error));
+        }
     }
 
     private void fillIOToSpinner(List<IO> ioList){
         IOAdapter mAdapter = new IOAdapter(getContext(), R.layout.item_spinner_dropdow_general, ioList);
         spIO.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
-        spPosition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spIO.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
                 if(!isLoading){
-                    IO selectedIO = mAdapter.getItem(pos);
+                    mIOSelected = mAdapter.getItem(pos);
                 }else{
                     Toast.makeText(getContext(),"Please wait", Toast.LENGTH_LONG).show();
                 }
@@ -246,8 +307,22 @@ public class IOSelectDialog extends Dialog implements View.OnClickListener {
         isLoading = false;
     }
 
-    @Override
-    public void onClick(View view) {
-
+    public interface IOListener{
+        void callBack(Position position, Device device, IO io);
     }
+
+    public interface IOFilterByDataTypeListener{
+        void callBack(Position position, Device device, IO io);
+    }
+
+    public void setIOListener(IOListener listener){
+        this.ioListener = listener;
+    }
+
+    public void setIoFilterByDataTypeListener(IOFilterByDataTypeListener ioFilterByDataTypeListener){
+        this.ioFilterByDataTypeListener = ioFilterByDataTypeListener;
+    }
+
+    IOListener ioListener;
+    IOFilterByDataTypeListener ioFilterByDataTypeListener;
 }

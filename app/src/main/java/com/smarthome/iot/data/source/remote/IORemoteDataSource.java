@@ -2,14 +2,8 @@ package com.smarthome.iot.data.source.remote;
 
 import android.content.Context;
 
-import com.google.gson.Gson;
-import com.smarthome.iot.data.model.Device;
-import com.smarthome.iot.data.source.DeviceDataSource;
 import com.smarthome.iot.data.source.IODataSource;
-import com.smarthome.iot.data.source.remote.api.ApiDevice;
 import com.smarthome.iot.data.source.remote.api.ApiIO;
-import com.smarthome.iot.data.source.remote.response.BaseResponse;
-import com.smarthome.iot.data.source.remote.response.DeviceResponse;
 import com.smarthome.iot.data.source.remote.response.IOResponse;
 import com.smarthome.iot.data.source.remote.service.AppServiceClient;
 import com.smarthome.iot.utils.AppConstants;
@@ -24,14 +18,14 @@ public class IORemoteDataSource implements IODataSource.RemoteDataSource {
 
     private ApiIO mApiIO;
 
-    private Context context;
+    private static Context mContext;
 
     public IORemoteDataSource(ApiIO apiIO){
         this.mApiIO = apiIO;
     }
 
     public static synchronized IORemoteDataSource getInstance(Context context) {
-        context = context;
+        mContext = context;
         if(instance == null){
             instance = new IORemoteDataSource(AppServiceClient.getIORemoteInstance(context));
         }
@@ -40,7 +34,13 @@ public class IORemoteDataSource implements IODataSource.RemoteDataSource {
 
     @Override
     public Single<IOResponse> ioByDevice(int deviceId, int type) {
-        return mApiIO.ioByDevice(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken()),
+        return mApiIO.ioByDevice(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(mContext).getApiAccessToken()),
                 "false", deviceId, type);
+    }
+
+    @Override
+    public Single<IOResponse> ioByDeviceWithDataTypeIO(int deviceId, int type, int dataTypeIO) {
+        return mApiIO.ioByDeviceWithDataTypeIO(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(mContext).getApiAccessToken()),
+                "false", deviceId, type, dataTypeIO);
     }
 }

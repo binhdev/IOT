@@ -10,11 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.smarthome.iot.R;
+import com.smarthome.iot.ui.widget.io.types.Option;
 
-public class CustomSpinnerAdapter extends ArrayAdapter<String> {
-    private String[] arrValues;
+public class CustomSpinnerAdapter extends ArrayAdapter<Option> {
+    private Option[] arrValues;
 
-    public CustomSpinnerAdapter(@NonNull Context context, int resource, @NonNull String[] arrValues) {
+    public CustomSpinnerAdapter(@NonNull Context context, int resource, @NonNull Option[] arrValues) {
         super(context, resource, arrValues);
         this.arrValues = arrValues;
     }
@@ -25,7 +26,7 @@ public class CustomSpinnerAdapter extends ArrayAdapter<String> {
         View view = LayoutInflater.from(getContext())
                 .inflate(R.layout.item_spinner, parent, false);
         TextView tvPositionName = view.findViewById(R.id.tv_name);
-        tvPositionName.setText(arrValues[position]);
+        tvPositionName.setText(arrValues[position].key);
         return view;
     }
 
@@ -34,13 +35,13 @@ public class CustomSpinnerAdapter extends ArrayAdapter<String> {
         View view = LayoutInflater.from(getContext())
                 .inflate(R.layout.item_spinner_dropdow_general, parent, false);
         TextView tvPositionName = view.findViewById(R.id.tv_name);
-        tvPositionName.setText(arrValues[position]);
+        tvPositionName.setText(arrValues[position].key);
         return view;
     }
 
     @Nullable
     @Override
-    public String getItem(int position) {
+    public Option getItem(int position) {
         return super.getItem(position);
     }
 }

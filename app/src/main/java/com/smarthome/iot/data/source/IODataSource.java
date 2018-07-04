@@ -12,5 +12,6 @@ public interface IODataSource {
     interface RemoteDataSource{
 
         Single<IOResponse> ioByDevice(int deviceId, int type);
+        Single<IOResponse> ioByDeviceWithDataTypeIO(int deviceId, int type, int dataTypeIO);
     }
 }

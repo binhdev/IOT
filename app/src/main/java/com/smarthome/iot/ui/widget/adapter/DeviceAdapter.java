@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.smarthome.iot.R;
-import com.smarthome.iot.data.model.Device;
+import com.smarthome.iot.data.model.device.Device;
 
 import java.util.List;
 

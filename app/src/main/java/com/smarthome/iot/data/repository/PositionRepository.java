@@ -56,4 +56,9 @@ public class PositionRepository implements PositionDataSource.LocalDataSource, P
     public Single<PositionResponse> allPosition() {
         return mPositionRemoteDataSource.allPosition();
     }
+
+    @Override
+    public Single<PositionResponse> allPositionWithDataTypeIO(int dataTypeIO) {
+        return mPositionRemoteDataSource.allPositionWithDataTypeIO(dataTypeIO);
+    }
 }

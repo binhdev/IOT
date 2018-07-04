@@ -20,6 +20,9 @@ public interface ApiPosition {
     @GET("position/list")
     Single<PositionResponse> allPosition(@Header("Authorization") String token, @Query("pagination") String pagination);
 
+    @GET("position/list")
+    Single<PositionResponse> allPositionWithDataTypeIO(@Header("Authorization") String token, @Query("pagination") String pagination,@Query("data_type_io") int dataTypeIO);
+
     @DELETE("position/delete")
     Single<BaseResponse> deletePosition(@Header("Authorization") String token, @Query("id[]") int[] id);
 

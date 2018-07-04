@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.smarthome.iot.R;
-import com.smarthome.iot.data.model.Device;
+import com.smarthome.iot.data.model.device.Device;
 import com.smarthome.iot.data.model.Position;
 import com.smarthome.iot.data.repository.DeviceRepository;
 import com.smarthome.iot.data.source.local.DeviceLocalDataSource;

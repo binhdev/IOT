@@ -1,6 +1,6 @@
 package com.smarthome.iot.ui.main.fragment.alarm;
 
-import com.smarthome.iot.data.model.Alarm;
+import com.smarthome.iot.data.model.alarm.Alarm;
 import com.smarthome.iot.ui.base.BasePresenter;
 import com.smarthome.iot.ui.base.BaseView;
 

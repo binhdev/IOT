@@ -1,4 +1,4 @@
-package com.smarthome.iot.data.model;
+package com.smarthome.iot.data.model.device;
 import java.io.Serializable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

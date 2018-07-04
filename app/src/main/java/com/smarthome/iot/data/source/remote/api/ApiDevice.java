@@ -34,4 +34,9 @@ public interface ApiDevice {
     Single<DeviceResponse> deviceByPosition(@Header("Authorization") String token, @Query("pagination") String pagination,
                                             @Query("position_id") int positionId);
 
+
+    @GET("device/list")
+    Single<DeviceResponse> deviceByPositionWithDataTypeIO(@Header("Authorization") String token, @Query("pagination") String pagination,
+                                            @Query("position_id") int positionId,  @Query("data_type_io") int dataTypeIO);
+
 }

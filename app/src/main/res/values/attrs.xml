@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SecondIOCompareView">
+        <attr name="valueType" format="integer" />
+        <attr name="dataType" format="integer" />
+    </declare-styleable>
+</resources>

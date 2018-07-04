@@ -2,8 +2,7 @@ package com.smarthome.iot.data.source.remote.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.smarthome.iot.data.model.Alarm;
-import com.smarthome.iot.data.source.remote.response.BaseResponse;
+import com.smarthome.iot.data.model.alarm.Alarm;
 
 import java.util.List;
 

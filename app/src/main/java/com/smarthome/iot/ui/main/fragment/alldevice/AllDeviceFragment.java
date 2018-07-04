@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.smarthome.iot.R;
-import com.smarthome.iot.data.model.Device;
+import com.smarthome.iot.data.model.device.Device;
 import com.smarthome.iot.data.repository.DeviceRepository;
 import com.smarthome.iot.data.source.local.DeviceLocalDataSource;
 import com.smarthome.iot.data.source.remote.DeviceRemoteDataSource;

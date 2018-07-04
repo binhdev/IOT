@@ -18,7 +18,7 @@
             android:layout_gravity="center_vertical"
             android:layout_margin="@dimen/tab_margin"/>
         <TextView
-            android:id="@+id/io_id"
+            android:id="@+id/tv_io"
             android:text="@string/select_io"
             android:textColor="@color/colorBlue"
             android:layout_width="0dp"
@@ -27,21 +27,12 @@
             android:textSize="13sp"
             android:gravity="center_vertical"
             android:layout_margin="@dimen/tab_margin"/>
-        <Spinner
-            android:id="@+id/io_value"
-            android:text="@string/select_io"
-            android:textColor="@color/colorBaseText"
-            android:textSize="13sp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            android:layout_margin="@dimen/tab_margin"/>
-        <Switch
-            android:id="@+id/io_value_type"
+        <com.smarthome.iot.ui.widget.io.IOValueView
+            android:id="@+id/ivv_value"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/tab_margin" />
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
 </LinearLayout>

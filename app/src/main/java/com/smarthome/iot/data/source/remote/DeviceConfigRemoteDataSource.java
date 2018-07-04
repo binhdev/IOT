@@ -18,7 +18,7 @@ public class DeviceConfigRemoteDataSource implements DeviceConfigDataSource.Remo
 
     private ApiDeviceConfig mApiDeviceConfig;
 
-    private Context context;
+    private static Context mContext;
 
     public DeviceConfigRemoteDataSource(ApiDeviceConfig apiDeviceConfig){
         this.mApiDeviceConfig = apiDeviceConfig;
@@ -33,7 +33,7 @@ public class DeviceConfigRemoteDataSource implements DeviceConfigDataSource.Remo
     }
     @Override
     public Single<DeviceConfigResponse> allDeviceConfig() {
-        return mApiDeviceConfig.allDeviceConfig(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(context).getApiAccessToken())
+        return mApiDeviceConfig.allDeviceConfig(StringHelper.ConcatString(AppConstants.SCHEMA_BEARER,AppPrefs.getInstance(mContext).getApiAccessToken())
                 ,"false");
     }
 }

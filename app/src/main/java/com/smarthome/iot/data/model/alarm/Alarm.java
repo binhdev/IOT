@@ -1,4 +1,4 @@
-package com.smarthome.iot.data.model;
+package com.smarthome.iot.data.model.alarm;
 
 import java.io.Serializable;
 import com.google.gson.annotations.Expose;

@@ -82,7 +82,7 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:padding="@dimen/tab_padding"
-                android:textColor="@color/colorBaseText"/>
+                android:textColor="@color/colorWhite"/>
         </RelativeLayout>
     </com.daimajia.swipe.SwipeLayout>
 </LinearLayout>

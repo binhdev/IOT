@@ -1,6 +1,6 @@
 package com.smarthome.iot.data.repository;
 
-import com.smarthome.iot.data.model.Device;
+import com.smarthome.iot.data.model.device.Device;
 import com.smarthome.iot.data.source.DeviceDataSource;
 import com.smarthome.iot.data.source.local.DeviceLocalDataSource;
 import com.smarthome.iot.data.source.remote.DeviceRemoteDataSource;
@@ -38,6 +38,11 @@ public class DeviceRepository implements DeviceDataSource.LocalDataSource, Devic
     @Override
     public Single<DeviceResponse> deviceByPosition(int positionId) {
         return mDeviceRemoteDataSource.deviceByPosition(positionId);
+    }
+
+    @Override
+    public Single<DeviceResponse> deviceByPositionWithDataTypeIO(int positionId, int dataTypeIO) {
+        return mDeviceRemoteDataSource.deviceByPositionWithDataTypeIO(positionId, dataTypeIO);
     }
 
     @Override

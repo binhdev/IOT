@@ -3,7 +3,7 @@ package com.smarthome.iot.ui.device.adapter;
 import android.content.Context;
 
 import com.google.common.base.Preconditions;
-import com.smarthome.iot.data.model.Device;
+import com.smarthome.iot.data.model.device.Device;
 import com.smarthome.iot.data.repository.DeviceRepository;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
 

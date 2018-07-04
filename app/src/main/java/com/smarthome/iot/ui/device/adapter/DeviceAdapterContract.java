@@ -1,6 +1,6 @@
 package com.smarthome.iot.ui.device.adapter;
 
-import com.smarthome.iot.data.model.Device;
+import com.smarthome.iot.data.model.device.Device;
 
 public interface DeviceAdapterContract {
 

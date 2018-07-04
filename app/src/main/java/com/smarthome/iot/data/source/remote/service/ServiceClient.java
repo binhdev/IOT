@@ -68,7 +68,7 @@ public class ServiceClient {
                 .registerTypeAdapter(boolean.class, booleanAdapter)
                 .registerTypeAdapter(Integer.class, integerAdapter)
                 .registerTypeAdapter(int.class, integerAdapter)
-                .registerTypeAdapterFactory(SingleToArrayTypeAdapter.FACTORY)
+//                .registerTypeAdapterFactory(SingleToArrayTypeAdapter.FACTORY)
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();

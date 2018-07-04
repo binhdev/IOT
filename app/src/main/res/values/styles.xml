@@ -48,7 +48,7 @@
         <item name="android:layout_margin">@dimen/tab_margin</item>
         <item name="android:background">@drawable/bg_btn_conner</item>
         <item name="android:textColor">@color/colorBaseText</item>
-        <item name="android:textColorHint">@color/colorBaseText</item>
+        <item name="android:textColorHint">@color/colorTextHint</item>
     </style>
 
     <style name="info_form_control">

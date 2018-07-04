@@ -3,7 +3,7 @@ package com.smarthome.iot.ui.main.fragment.alarm.adapter;
 import android.content.Context;
 
 import com.google.common.base.Preconditions;
-import com.smarthome.iot.data.model.Alarm;
+import com.smarthome.iot.data.model.alarm.Alarm;
 import com.smarthome.iot.data.repository.AlarmRepository;
 import com.smarthome.iot.utils.rx.BaseSchedulerProvider;
 
